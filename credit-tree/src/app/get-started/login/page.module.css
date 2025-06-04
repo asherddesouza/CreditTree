@@ -1,3 +1,7 @@
+body {
+  background-color: #618378;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -6,7 +10,7 @@
 }
 
 .title {
-  color: #618378;
+  color: #c9f0f4;
   font-size: 84px;
   text-align: center;
   user-select: none;
@@ -14,27 +18,27 @@
   margin: 20px;
 }
 
-.subtitle {
-  color: #583e00;
-  font-size: 30px;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
+.field {
+  background-color: #c9f0f4;
+  padding: 30px;
+  border-radius: 71px;
+  border-style: none;
+  width: 600px;
+  margin: 15px;
+  font-size: 24px;
+  text-indent: 60px;
 }
 
-.sapling {
+.emailIcon {
   position: absolute;
-  bottom: 140px;
+  padding: 45px 40px;
 }
 
-.ground {
+.padlockIcon {
   position: absolute;
-  bottom: -160px;
-  width: 100%;
-  height: 300px;
+  padding: 37.5px 40px;
 }
 
-.login,
 .signup {
   padding: 15px 45px;
   background-color: #ffffff;
@@ -46,27 +50,20 @@
   margin: 20px;
 }
 
-.login:hover,
 .signup:hover {
-  background-color: #618378;
+  background-color: #2a3934;
   color: #ffffff;
   cursor: pointer;
 }
 
-.dividerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
+@media only screen and (max-width: 520px) {
+  .field {
+    width: 400px;
+  }
 }
 
-.divider {
-  font-size: 1.5rem;
-}
-
-.dividerLine {
-  height: 5px;
-  width: 100px;
-  background-color: #618378;
-  margin: 15px;
+@media only screen and (max-width: 720px) {
+  .field {
+    width: 400px;
+  }
 }
