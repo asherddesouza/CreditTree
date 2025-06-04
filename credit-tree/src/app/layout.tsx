@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Pacifico, Pavanam, Paytone_One } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+export const pacifico = Pacifico({
+  weight: "400",
+  variable: "--font-pacifico",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+export const pavanam = Pavanam({
+  weight: "400",
+  variable: "--font-pavanam",
+});
+
+export const paytone = Paytone_One({
+  weight: "400",
+  variable: "--font-paytone",
 });
 
 export const metadata: Metadata = {
@@ -24,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
