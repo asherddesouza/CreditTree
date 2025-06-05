@@ -60,3 +60,15 @@ body {
   color: #ffffff;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 720px) {
+  .field {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .field {
+    width: 300px;
+  }
+}
