@@ -1,0 +1,69 @@
+body {
+  background-color: #618378;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  color: #c9f0f4;
+  font-size: 84px;
+  text-align: center;
+  user-select: none;
+  padding-top: 30px;
+  margin: 20px;
+}
+
+.field {
+  background-color: #c9f0f4;
+  padding: 30px;
+  border-radius: 71px;
+  border-style: none;
+  width: 600px;
+  margin: 15px;
+  font-size: 24px;
+  text-indent: 60px;
+}
+
+.emailIcon {
+  position: absolute;
+  padding: 45px 40px;
+}
+
+.padlockIcon {
+  position: absolute;
+  padding: 37.5px 40px;
+}
+
+.signup {
+  padding: 15px 45px;
+  background-color: #ffffff;
+  border: 10px solid #618378;
+  border-radius: 100px;
+  color: #583e00;
+  font-size: 2rem;
+  text-decoration: none;
+  margin: 20px;
+}
+
+.signup:hover {
+  background-color: #2a3934;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 720px) {
+  .field {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .field {
+    width: 300px;
+  }
+}
