@@ -56,14 +56,14 @@ body {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 520px) {
+@media only screen and (max-width: 720px) {
   .field {
     width: 400px;
   }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 520px) {
   .field {
-    width: 400px;
+    width: 300px;
   }
 }
