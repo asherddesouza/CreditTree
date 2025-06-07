@@ -44,10 +44,7 @@ export default function DeleteAccount() {
           height={35}
           alt="delete"
         />
-        <div
-          href="profile/delete-account"
-          className={`fontPaytone ${styles.deleteButton}`}
-        >
+        <div className={`fontPaytone ${styles.deleteButton}`}>
           Delete Account
         </div>
       </div>
