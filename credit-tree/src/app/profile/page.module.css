@@ -1,0 +1,145 @@
+body {
+  background-color: #618378;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dividerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.divider {
+  font-size: 5rem;
+  color: #c9f0f4;
+}
+
+.dividerLine {
+  height: 5px;
+  width: 100px;
+  background-color: #c9f0f4;
+  margin: 15px;
+}
+
+.profile {
+  border-radius: 100%;
+  border: 10px solid #495853;
+  margin: 10px;
+}
+
+.name {
+  color: #c9f0f4;
+  font-size: 80px;
+}
+
+.email {
+  color: #c9f0f4;
+  font-size: 32px;
+}
+
+.editContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0px 50px 0px;
+}
+
+.editButton,
+.changePasswordButton {
+  padding: 10px 30px;
+  padding-left: 80px;
+  background-color: #d9d9d9;
+  border: 5px solid #495853;
+  border-radius: 100px;
+  color: #36403d;
+  font-size: 24px;
+  text-decoration: none;
+  margin: 20px 5px;
+}
+
+.editIcon {
+  position: absolute;
+  padding: 2.5px 30px;
+  pointer-events: none;
+}
+
+.changePasswordIcon {
+  position: absolute;
+  padding: 0px 20px;
+  pointer-events: none;
+}
+
+.editButton:hover,
+.changePasswordButton:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.deleteButton {
+  padding: 10px 30px;
+  padding-left: 70px;
+  background-color: #ac5c5c;
+  border: 5px solid #495853;
+  border-radius: 100px;
+  color: #ffffff;
+  font-size: 24px;
+  text-decoration: none;
+  margin: 10px 20px;
+}
+
+.deleteIcon {
+  position: absolute;
+  padding: 0px 45px;
+  pointer-events: none;
+}
+
+.deleteButton:hover {
+  background-color: #9b5050;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 660px) {
+  .name {
+    font-size: 68px;
+  }
+
+  .email {
+    font-size: 24px;
+  }
+
+  .editContainer {
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .name {
+    font-size: 54px;
+  }
+
+  .email {
+    font-size: 18px;
+  }
+
+  .dividerLine {
+    height: 5px;
+    width: 50px;
+    background-color: #c9f0f4;
+    margin: 15px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .name {
+    font-size: 46px;
+  }
+}
