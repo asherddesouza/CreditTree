@@ -22,7 +22,7 @@ body {
   background-color: #c9f0f4;
   padding: 30px;
   border-radius: 71px;
-  border-style: none;
+  border: 5px solid #495853;
   width: 600px;
   margin: 15px;
   font-size: 24px;

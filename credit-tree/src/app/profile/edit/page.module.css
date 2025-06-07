@@ -1,3 +1,134 @@
 body {
   background-color: #618378;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dividerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.divider {
+  font-size: 5rem;
+  color: #c9f0f4;
+}
+
+.dividerLine {
+  height: 5px;
+  width: 100px;
+  background-color: #c9f0f4;
+  margin: 15px;
+}
+
+.profile {
+  border-radius: 100%;
+  border: 10px solid #495853;
+  margin: 10px;
+}
+
+.profileContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leftArrow {
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-right: 50px solid #495853;
+  border-bottom: 25px solid transparent;
+}
+
+.rightArrow {
+  width: 0;
+  height: 0;
+  border-top: 25px solid transparent;
+  border-left: 50px solid #495853;
+  border-bottom: 25px solid transparent;
+}
+
+.leftArrow:hover {
+  cursor: pointer;
+  border-right: 50px solid #343f3b;
+}
+
+.rightArrow:hover {
+  cursor: pointer;
+  border-left: 50px solid #343f3b;
+}
+
+.field {
+  background-color: #c9f0f4;
+  padding: 20px;
+  border-radius: 71px;
+  border: 5px solid #495853;
+  width: 600px;
+  margin: 20px;
+  font-size: 24px;
+  text-indent: 70px;
+}
+
+.emailIcon {
+  position: absolute;
+  padding: 45px;
+}
+
+.saveButton {
+  padding: 10px 30px;
+  background-color: #d9d9d9;
+  border: 5px solid #495853;
+  border-radius: 100px;
+  color: #36403d;
+  font-size: 24px;
+  text-decoration: none;
+  margin: 20px 5px;
+  text-indent: 40px;
+}
+
+.saveButton:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.saveIcon {
+  position: absolute;
+  padding: 35px 25px;
+  pointer-events: none;
+}
+
+@media only screen and (max-width: 690px) {
+  .field {
+    width: 400px;
+  }
+  .dividerLine {
+    width: 50px;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .dividerLine {
+    width: 0px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .divider {
+    font-size: 64px;
+  }
+  .field {
+    width: 300px;
+  }
+  .profile {
+    width: 200px;
+    height: 200px;
+  }
+}
