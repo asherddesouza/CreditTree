@@ -6,6 +6,7 @@ import { ToneMappingMode } from "postprocessing";
 import { useRef, useState } from "react";
 import TreeStage1 from "@/components/tree-stage-1/page";
 import InsightBird from "@/components/insight-bird/page";
+import Globe from "@/components/globe/page";
 
 export default function Environment() {
   return (
@@ -16,21 +17,18 @@ export default function Environment() {
 
       <Perf position="top-left" />
 
-      <Sky />
+      <Sky sunPosition={[0, 5, 20]} inclination={0} azimuth={0.25} />
 
       <OrbitControls makeDefault enablePan={false} maxPolarAngle={1.6} />
 
       <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
-      <InsightBird />
+      {/* <InsightBird /> */}
 
-      <TreeStage1 />
+      {/* <TreeStage1 /> */}
 
-      <mesh position-y={-14} scale={10}>
-        <sphereGeometry />
-        <meshStandardMaterial color="greenyellow" />
-      </mesh>
+      <Globe />
     </>
   );
 }
