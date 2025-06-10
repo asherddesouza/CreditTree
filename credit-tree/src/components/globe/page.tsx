@@ -6,9 +6,14 @@ export default function Globe() {
 
   return (
     <>
-      <mesh position-y={-14} scale={10} rotation={[0, 0, 0]}>
+      <mesh position-y={-30} scale={26} rotation={[0, 0, 0]}>
         <sphereGeometry />
-        <meshStandardMaterial color="white" map={colorMap} />
+        <meshStandardMaterial
+          color="#CECECE"
+          map={colorMap}
+          wireframe={false}
+          roughness={9}
+        />
       </mesh>
     </>
   );

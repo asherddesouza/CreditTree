@@ -23,6 +23,7 @@ export default function InsightBird() {
         <mesh position-z={4}>
           <boxGeometry args={[1, 0.15, 2]} />
           <meshStandardMaterial color="yellow" />
+          <meshNormalMaterial />
         </mesh>
         <mesh position-x={-1} position-z={4} rotation={[0, 0, Math.PI / 2]}>
           <coneGeometry args={[0.25, 1.2, 32]} />
@@ -31,6 +32,7 @@ export default function InsightBird() {
         <mesh rotation={[0, 0, -Math.PI / 2]} position-z={4} receiveShadow>
           <capsuleGeometry args={[0.5, 1, 32]} />
           <meshStandardMaterial color="yellow" />
+          <meshNormalMaterial />
         </mesh>
       </group>
     </>

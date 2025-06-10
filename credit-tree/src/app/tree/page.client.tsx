@@ -1,14 +1,14 @@
 import styles from "./page.module.css";
-import { OrbitControls, Sky } from "@react-three/drei";
+import { OrbitControls, Sky, Environment } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { ToneMapping, EffectComposer } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
-import { useRef, useState } from "react";
 import TreeStage1 from "@/components/tree-stage-1/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
+import * as THREE from "three";
 
-export default function Environment() {
+export default function CreditTree() {
   return (
     <>
       <EffectComposer>
@@ -17,7 +17,9 @@ export default function Environment() {
 
       <Perf position="top-left" />
 
-      <Sky sunPosition={[0, 5, 20]} inclination={0} azimuth={0.25} />
+      <Environment files="./textures/autumn_field_puresky_4k.hdr" background />
+
+      {/* <Sky sunPosition={[0, 5, 20]} inclination={0} azimuth={0.25} /> */}
 
       <OrbitControls makeDefault enablePan={false} maxPolarAngle={1.6} />
 
@@ -26,7 +28,7 @@ export default function Environment() {
 
       {/* <InsightBird /> */}
 
-      {/* <TreeStage1 /> */}
+      <TreeStage1 />
 
       <Globe />
     </>
