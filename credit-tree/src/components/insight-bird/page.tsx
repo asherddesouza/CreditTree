@@ -3,9 +3,43 @@ import { useFrame } from "@react-three/fiber";
 import { useCursor, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
-export default function InsightBird() {
+enum BirdColours {
+  BLACK = "black",
+  YELLOW = "#735D1D",
+  RED = "maroon",
+  PURPLE = "#650C85",
+  GREEN = "#445E3C",
+  PINK = "#9C446A",
+  BLUE = "#444E9C",
+}
+
+interface InsightBirdProps {
+  birdType: string;
+}
+
+export default function InsightBird({ birdType }: InsightBirdProps) {
   const birdRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
+
+  let birdColor: string;
+
+  if (birdType === "black") {
+    birdColor = BirdColours.BLACK;
+  } else if (birdType === "yellow") {
+    birdColor = BirdColours.YELLOW;
+  } else if (birdType === "red") {
+    birdColor = BirdColours.RED;
+  } else if (birdType === "purple") {
+    birdColor = BirdColours.PURPLE;
+  } else if (birdType === "green") {
+    birdColor = BirdColours.GREEN;
+  } else if (birdType === "pink") {
+    birdColor = BirdColours.PINK;
+  } else if (birdType === "blue") {
+    birdColor = BirdColours.BLUE;
+  } else {
+    birdColor = BirdColours.RED; // default color if no match
+  }
 
   // todo
   // create a prop to be passed to the component to control the type of bird that's rendered
@@ -28,17 +62,17 @@ export default function InsightBird() {
           <mesh rotation={[0, Math.PI / 2, 0]} position-x={0.5} receiveShadow>
             <sphereGeometry args={[0.5, 32, 32, 0, Math.PI]} />
             <meshNormalMaterial />
-            <meshStandardMaterial color="maroon" />
+            <meshStandardMaterial color={birdColor} />
           </mesh>
           <mesh rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.3, 0.5, 1, 32]} />
             <meshNormalMaterial />
-            <meshStandardMaterial color="maroon" />
+            <meshStandardMaterial color={birdColor} />
           </mesh>
           <mesh rotation={[0, -Math.PI / 2, 0]} position-x={-0.5} receiveShadow>
             <sphereGeometry args={[0.3, 32, 32, 0, Math.PI]} />
             <meshNormalMaterial />
-            <meshStandardMaterial color="maroon" />
+            <meshStandardMaterial color={birdColor} />
           </mesh>
           <RoundedBox
             args={[0.5, 0.1, 0.3]}
@@ -49,13 +83,13 @@ export default function InsightBird() {
             smoothness={4}
           >
             <meshNormalMaterial />
-            <meshStandardMaterial color="maroon" />
+            <meshStandardMaterial color={birdColor} />
           </RoundedBox>
         </group>
 
         <RoundedBox args={[1, 0.1, 2]}>
           <meshNormalMaterial />
-          <meshStandardMaterial color="maroon" />
+          <meshStandardMaterial color={birdColor} />
         </RoundedBox>
 
         <group position-x={1}>
@@ -96,6 +130,28 @@ export default function InsightBird() {
             <meshStandardMaterial color="black" />
           </mesh>
         </group>
+
+        {birdType === "black" ? (
+          <>
+            <mesh position-y={0.4} position-x={0.5} rotation={[0, 0, 0]}>
+              <coneGeometry args={[0.2, 0.5]} />
+              <meshStandardMaterial color="black" />
+            </mesh>
+            <mesh position-y={0.4} position-x={0.5} rotation={[-0.5, 0.4, 0.5]}>
+              <coneGeometry args={[0.2, 0.5]} />
+              <meshStandardMaterial color="black" />
+            </mesh>
+            <mesh
+              position-y={0.4}
+              position-x={0.5}
+              position-z={0.05}
+              rotation={[0.5, 0.4, 0.5]}
+            >
+              <coneGeometry args={[0.2, 0.5]} />
+              <meshStandardMaterial color="black" />
+            </mesh>
+          </>
+        ) : null}
       </group>
     </>
   );
