@@ -19,16 +19,14 @@ export default function CreditTree() {
 
       <Environment files="./textures/autumn_field_puresky_4k.hdr" background />
 
-      {/* <Sky sunPosition={[0, 5, 20]} inclination={0} azimuth={0.25} /> */}
-
       <OrbitControls makeDefault enablePan={false} maxPolarAngle={1.6} />
 
       <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
-      {/* <InsightBird /> */}
+      <InsightBird birdType={"green"} />
 
-      <TreeStage1 />
+      {/* <TreeStage1 /> */}
 
       <Globe />
     </>
