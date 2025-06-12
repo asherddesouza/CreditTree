@@ -57,6 +57,7 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
         ref={birdRef}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
+        // position-z={4}
       >
         <group>
           <mesh rotation={[0, Math.PI / 2, 0]} position-x={0.5} receiveShadow>
@@ -82,16 +83,13 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
             radius={0.02}
             smoothness={4}
           >
-            <meshNormalMaterial />
             <meshStandardMaterial color={birdColor} />
           </RoundedBox>
         </group>
-
-        <RoundedBox args={[1, 0.1, 2]}>
+        <RoundedBox args={[0.6, 0.1, 2]}>
           <meshNormalMaterial />
           <meshStandardMaterial color={birdColor} />
         </RoundedBox>
-
         <group position-x={1}>
           <RoundedBox
             position-y={0.05}
@@ -111,7 +109,6 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
             <meshStandardMaterial color="red" />
           </RoundedBox>
         </group>
-
         <group position-x={0.87} position-y={0.2}>
           <mesh position-z={0.2}>
             <sphereGeometry args={[0.1]} />
@@ -130,16 +127,15 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
             <meshStandardMaterial color="black" />
           </mesh>
         </group>
-
         {birdType === "black" ? (
           <>
             <mesh position-y={0.4} position-x={0.5} rotation={[0, 0, 0]}>
               <coneGeometry args={[0.2, 0.5]} />
-              <meshStandardMaterial color="black" />
+              <meshStandardMaterial color={birdColor} />
             </mesh>
             <mesh position-y={0.4} position-x={0.5} rotation={[-0.5, 0.4, 0.5]}>
               <coneGeometry args={[0.2, 0.5]} />
-              <meshStandardMaterial color="black" />
+              <meshStandardMaterial color={birdColor} />
             </mesh>
             <mesh
               position-y={0.4}
@@ -148,10 +144,162 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
               rotation={[0.5, 0.4, 0.5]}
             >
               <coneGeometry args={[0.2, 0.5]} />
-              <meshStandardMaterial color="black" />
+              <meshStandardMaterial color={birdColor} />
             </mesh>
           </>
         ) : null}
+        {birdType === "yellow" ? (
+          <>
+            <mesh position-y={-0.1} position-x={-0.4} rotation={[0, 0, 0.5]}>
+              <torusGeometry args={[1, 0.05, 16, 100, 0.3]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+            <mesh position-y={0.6} position-x={0.25} rotation={[0, 0, 1]}>
+              <capsuleGeometry args={[0.1, 0.08]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+          </>
+        ) : null}
+        {birdType === "red" ? (
+          <>
+            <mesh position-y={0.5} position-x={0.4} rotation={[0, 0, -0.6]}>
+              <boxGeometry args={[0.08, 0.2, 0.1]} />
+              <meshStandardMaterial color={"#2B1D03"} />
+            </mesh>
+            <mesh
+              position-y={0.5}
+              position-x={0.4}
+              position-z={0.1}
+              rotation={[0.5, 0, 0.2]}
+            >
+              <boxGeometry args={[0.08, 0.2, 0.1]} />
+              <meshStandardMaterial color={"#2B1D03"} />
+            </mesh>
+            <mesh
+              position-y={0.5}
+              position-x={0.4}
+              position-z={-0.1}
+              rotation={[-0.5, 0, 0.6]}
+            >
+              <boxGeometry args={[0.08, 0.2, 0.1]} />
+              <meshStandardMaterial color={"#2B1D03"} />
+            </mesh>
+          </>
+        ) : null}
+        {birdType === "purple" ? (
+          <>
+            <>
+              <mesh position-y={0.5} position-x={0.4} rotation={[0, 0, 0.5]}>
+                <cylinderGeometry args={[0.05, 0.05, 0.6, 3]} />
+                <meshStandardMaterial color={"#301300"} />
+              </mesh>
+              <mesh
+                position-y={0.5}
+                position-x={0.4}
+                position-z={0.1}
+                rotation={[0, 0, 0.8]}
+              >
+                <cylinderGeometry args={[0.05, 0.05, 0.5, 3]} />
+                <meshStandardMaterial color={"#301300"} />
+              </mesh>
+              <mesh
+                position-y={0.5}
+                position-x={0.4}
+                position-z={-0.1}
+                rotation={[0, 0, 0.7]}
+              >
+                <cylinderGeometry args={[0.05, 0.05, 0.4, 3]} />
+                <meshStandardMaterial color={"#301300"} />
+              </mesh>
+            </>
+          </>
+        ) : null}
+        {birdType === "green" ? (
+          <>
+            <>
+              <mesh position-y={0.5} position-x={0.4} rotation={[0, 0, 0.5]}>
+                <cylinderGeometry args={[0.05, 0.05, 0.3, 3]} />
+                <meshStandardMaterial color={"#5B0101"} />
+              </mesh>
+              <mesh position-y={0.5} position-x={0.5} rotation={[0, 0, -0.5]}>
+                <cylinderGeometry args={[0.05, 0.05, 0.3, 3]} />
+                <meshStandardMaterial color={"#5B0101"} />
+              </mesh>
+              <mesh
+                position-y={0.5}
+                position-x={0.5}
+                position-z={0.05}
+                rotation={[0.5, 0, 0]}
+              >
+                <cylinderGeometry args={[0.05, 0.05, 0.3, 3]} />
+                <meshStandardMaterial color={"#5B0101"} />
+              </mesh>
+              <mesh
+                position-y={0.5}
+                position-x={0.5}
+                position-z={-0.05}
+                rotation={[-0.5, 0, 0]}
+              >
+                <cylinderGeometry args={[0.05, 0.05, 0.3, 3]} />
+                <meshStandardMaterial color={"#5B0101"} />
+              </mesh>
+            </>
+          </>
+        ) : null}
+        {birdType === "pink" ? (
+          <>
+            <mesh position-y={-0.1} position-x={-0.4} rotation={[0, 0, 0.5]}>
+              <torusGeometry args={[1, 0.05, 16, 100, 0.3]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+            <mesh position-y={0.6} position-x={0.25} rotation={[0, 0, 1]}>
+              <capsuleGeometry args={[0.1, 0.08]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+          </>
+        ) : null}
+        {birdType === "blue" ? (
+          <>
+            <mesh
+              position-y={-0.05}
+              position-x={0}
+              position-z={0.9}
+              rotation={[0, 1.2, 0.5]}
+            >
+              <torusGeometry args={[1, 0.05, 16, 100, 0.3]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+            <mesh
+              position-y={0.6}
+              position-x={0.27}
+              position-z={0.2}
+              rotation={[1, 0, 0.7]}
+            >
+              <capsuleGeometry args={[0.1, 0.08]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+
+            <mesh
+              position-y={-0.05}
+              position-x={0}
+              position-z={-0.9}
+              rotation={[0, -1.2, 0.5]}
+            >
+              <torusGeometry args={[1, 0.05, 16, 100, 0.3]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+            <mesh
+              position-y={0.6}
+              position-x={0.27}
+              position-z={-0.2}
+              rotation={[-1, 0, 0.7]}
+            >
+              <capsuleGeometry args={[0.1, 0.08]} />
+              <meshStandardMaterial color={birdColor} />
+            </mesh>
+          </>
+        ) : null}
+        2
       </group>
     </>
   );

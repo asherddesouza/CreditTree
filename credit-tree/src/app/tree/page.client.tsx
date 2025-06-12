@@ -24,7 +24,7 @@ export default function CreditTree() {
       <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
       <ambientLight intensity={1.5} />
 
-      <InsightBird birdType={"black"} />
+      <InsightBird birdType={"green"} />
 
       {/* <TreeStage1 /> */}
 
