@@ -5,6 +5,7 @@ import { ToneMapping, EffectComposer } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
 import TreeStage1 from "@/components/tree-stage-1/page";
 import TreeStage2 from "@/components/tree-stage-2/page";
+import TreeStage3 from "@/components/tree-stage-3/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import * as THREE from "three";
@@ -33,7 +34,8 @@ export default function CreditTree() {
       {/* <InsightBird birdType={"green"} /> */}
 
       {/* <TreeStage1 /> */}
-      <TreeStage2 />
+      {/* <TreeStage2 /> */}
+      <TreeStage3 />
 
       <Globe />
     </>
