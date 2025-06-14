@@ -32,8 +32,8 @@ export default function CreditTree() {
 
       {/* <InsightBird birdType={"green"} /> */}
 
-      <TreeStage1 />
-      {/* <TreeStage2 /> */}
+      {/* <TreeStage1 /> */}
+      <TreeStage2 />
 
       <Globe />
     </>
