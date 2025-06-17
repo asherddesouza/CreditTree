@@ -1,10 +1,17 @@
 import styles from "./page.module.css";
-import { OrbitControls, Sky, Environment } from "@react-three/drei";
+import {
+  OrbitControls,
+  Sky,
+  Environment,
+  Cloud,
+  Clouds,
+} from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { ToneMapping, EffectComposer } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
 import TreeStage1 from "@/components/tree-stage-1/page";
 import TreeStage2 from "@/components/tree-stage-2/page";
+import TreeStage3 from "@/components/tree-stage-3/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import * as THREE from "three";
@@ -20,6 +27,11 @@ export default function CreditTree() {
 
       <Environment files="./textures/autumn_field_puresky_4k.hdr" background />
 
+      {/* <Clouds material={THREE.MeshBasicMaterial}>
+        <Cloud segments={40} bounds={[10, 2, 2]} volume={10} color="orange" />
+        <Cloud seed={1} scale={2} volume={5} color="hotpink" fade={100} />
+      </Clouds> */}
+
       <OrbitControls
         makeDefault
         enablePan={false}
@@ -34,6 +46,7 @@ export default function CreditTree() {
 
       {/* <TreeStage1 /> */}
       <TreeStage2 />
+      {/* <TreeStage3 /> */}
 
       <Globe />
     </>
