@@ -125,53 +125,75 @@ export default function TreeStage3() {
             />
             <meshBasicMaterial color="#6F4E2B" />
           </mesh>
+
+          <mesh>
+            <tubeGeometry
+              args={[
+                new CatmullRomCurve3([
+                  new Vector3(0, 4, 0),
+                  new Vector3(-4, 6, 0),
+                ]),
+                20,
+                0.3,
+                20,
+              ]}
+            />
+            <meshBasicMaterial color="#6F4E2B" />
+          </mesh>
         </group>
 
-        <group position={[-3, 9, 3]} scale={0.3}>
+        <group position={[-3, 8.5, 2.5]} scale={2}>
           <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
+            <sphereGeometry args={[1, 32, 16]} />
             <meshBasicMaterial color="#578742" />
           </mesh>
         </group>
 
-        <group position={[-3, 8, -3]} scale={0.3}>
+        <group position={[-3, 8, -3]} scale={2.2}>
           <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
+            <sphereGeometry args={[1, 32, 16]} />
             <meshBasicMaterial color="#71A15C" />
           </mesh>
         </group>
 
-        <group position={[3, 7, 2]} scale={0.3}>
+        <group position={[3, 7, 2]} scale={2}>
           <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
-            <meshBasicMaterial color="#4D8670" />
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial color="#71A15C" />
           </mesh>
         </group>
 
-        <group position={[3, 8, -2]} scale={0.3}>
+        <group position={[-4, 6, 0]} scale={2}>
           <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial color="#71A15C" />
+          </mesh>
+        </group>
+
+        <group position={[3, 8, -2]} scale={2}>
+          <mesh>
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial color="#71A15C" />
+          </mesh>
+        </group>
+
+        <group position={[1, 6, -3]} scale={2}>
+          <mesh>
+            <sphereGeometry args={[1, 32, 16]} />
             <meshBasicMaterial color="#578742" />
           </mesh>
         </group>
 
-        <group position={[1, 6, -3]} scale={0.3}>
+        <group position={[0, 5, 3]} scale={2}>
           <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
-            <meshBasicMaterial color="#71A15C" />
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial color="#578742" />
           </mesh>
         </group>
 
-        <group position={[0, 5, 3]} scale={0.3}>
+        <group position={[0, 10, 0.5]} scale={2.5}>
           <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
-            <meshBasicMaterial color="#4D8670" />
-          </mesh>
-        </group>
-
-        <group position={[0, 10, 0.5]} scale={0.3}>
-          <mesh>
-            <sphereGeometry args={[3, 32, 16]} />
+            <sphereGeometry args={[1, 32, 16]} />
             <meshBasicMaterial color="#578742" />
           </mesh>
         </group>
