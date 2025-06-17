@@ -66,6 +66,44 @@ export default function TreeStage2() {
             />
             <meshBasicMaterial color="#634500" />
           </mesh>
+
+          <mesh>
+            <tubeGeometry
+              args={[
+                new CatmullRomCurve3([
+                  new Vector3(0, 3, 0),
+                  new Vector3(0, 3.5, 1),
+                ]),
+                20,
+                0.1,
+                20,
+              ]}
+            />
+            <meshBasicMaterial color="#634500" />
+          </mesh>
+          <mesh position={[0, 3.5, 1]} scale={0.1}>
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial color="#634500" />
+          </mesh>
+
+          <mesh>
+            <tubeGeometry
+              args={[
+                new CatmullRomCurve3([
+                  new Vector3(0, 2.8, 0),
+                  new Vector3(0, 3.2, -0.8),
+                ]),
+                20,
+                0.1,
+                20,
+              ]}
+            />
+            <meshBasicMaterial color="#634500" />
+          </mesh>
+          <mesh position={[0, 3.2, -0.8]} scale={0.1}>
+            <sphereGeometry args={[1, 32, 16]} />
+            <meshBasicMaterial color="#634500" />
+          </mesh>
         </group>
 
         <mesh position={[0.6, 3.2, 0]} rotation-y={Math.PI / 2} rotation-x={7}>
@@ -109,7 +147,7 @@ export default function TreeStage2() {
           position={[0, 4.8, -0.5]}
           rotation-y={0}
           rotation-x={3}
-          rotation-z={0}
+          rotation-z={-1}
         >
           <LeafType1 />
         </mesh>
@@ -174,6 +212,30 @@ export default function TreeStage2() {
           rotation-y={1.5}
           rotation-x={Math.PI / 2}
           rotation-z={3}
+        >
+          <LeafType1 />
+        </mesh>
+        <mesh
+          position={[0, 3.75, 1]}
+          rotation-y={0}
+          rotation-x={-1}
+          rotation-z={4}
+        >
+          <LeafType1 />
+        </mesh>
+        <mesh
+          position={[0, 2.9, 1]}
+          rotation-y={0}
+          rotation-x={1}
+          rotation-z={4}
+        >
+          <LeafType1 />
+        </mesh>
+        <mesh
+          position={[0, 3, -1.2]}
+          rotation-y={Math.PI}
+          rotation-x={-0.5}
+          rotation-z={0}
         >
           <LeafType1 />
         </mesh>
