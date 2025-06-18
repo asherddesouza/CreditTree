@@ -13,6 +13,7 @@ import TreeStage1 from "@/components/tree-stage-1/page";
 import TreeStage2 from "@/components/tree-stage-2/page";
 import TreeStage3 from "@/components/tree-stage-3/page";
 import TreeStage4 from "@/components/tree-stage-4/page";
+import TreeStage5 from "@/components/tree-stage-5/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import * as THREE from "three";
@@ -37,18 +38,19 @@ export default function CreditTree() {
         makeDefault
         enablePan={false}
         maxPolarAngle={1.6}
-        maxDistance={200}
+        maxDistance={270}
       />
 
       <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
       <ambientLight intensity={4} />
 
-      <InsightBird birdType={"green"} />
+      {/* <InsightBird birdType={"green"} /> */}
 
       {/* <TreeStage1 /> */}
       {/* <TreeStage2 /> */}
       {/* <TreeStage3 /> */}
-      <TreeStage4 />
+      {/* <TreeStage4 /> */}
+      <TreeStage5 />
 
       <Globe />
     </>
