@@ -12,7 +12,7 @@ export default function TreeStage5() {
         <group>
           <group>
             <mesh>
-              <cylinderGeometry args={[5, 6, 60]} />
+              <cylinderGeometry args={[5, 6, 100]} />
               <meshBasicMaterial color="#6F4E2B" />
             </mesh>
             <mesh>
