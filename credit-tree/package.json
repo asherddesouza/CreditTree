@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "6.10.1",
     "@react-three/drei": "10.1.2",
     "@react-three/fiber": "9.1.2",
     "@react-three/postprocessing": "3.0.4",
@@ -22,11 +23,13 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
+    "@types/node": "20.19.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
-    "typescript": "^5"
+    "prisma": "6.10.1",
+    "ts-node": "10.9.2",
+    "typescript": "5.8.3"
   }
 }
