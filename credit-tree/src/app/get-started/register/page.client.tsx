@@ -2,10 +2,19 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useActionState } from "react";
+import { createUser } from "@/app/get-started/register/page";
+
+const initialState = {
+  message: "",
+};
 
 export default function Page() {
+  const [state, formAction, pending] = useActionState(createUser, initialState);
+  const showErrorMessage = true;
+
   return (
-    <div className={styles.container}>
+    <form className={styles.container} action={formAction}>
       <div className={`fontPaytone ${styles.title}`}>Create Account</div>
       <div>
         <Image
@@ -18,6 +27,7 @@ export default function Page() {
         <input
           type="text"
           placeholder="Full Name"
+          name="name"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
@@ -33,6 +43,7 @@ export default function Page() {
         <input
           type="email"
           placeholder="Email Address"
+          name="email"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
@@ -48,6 +59,7 @@ export default function Page() {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
@@ -63,11 +75,22 @@ export default function Page() {
         <input
           type="password"
           placeholder="Confirm Password"
+          name="confirmPassword"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
 
-      <button className={`fontPaytone ${styles.signup}`}>SIGN UP</button>
-    </div>
+      {state?.message && (
+        <div className={`fontPavanam ${styles.error}`}>{state.message}</div>
+      )}
+
+      <button
+        className={`fontPaytone ${styles.signup}`}
+        type="submit"
+        disabled={pending}
+      >
+        SIGN UP
+      </button>
+    </form>
   );
 }

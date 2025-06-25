@@ -31,17 +31,17 @@ body {
 
 .profileIcon {
   position: absolute;
-  padding: 35px 45px;
+  padding: 37.5px 50px;
 }
 
 .emailIcon {
   position: absolute;
-  padding: 45px 40px;
+  padding: 52.5px 45px;
 }
 
 .padlockIcon {
   position: absolute;
-  padding: 37.5px 40px;
+  padding: 40px 42.5px;
 }
 
 .signup {
@@ -52,13 +52,24 @@ body {
   color: #583e00;
   font-size: 2rem;
   text-decoration: none;
-  margin: 20px;
+  margin: 0px 20px 40px 20px;
 }
 
 .signup:hover {
   background-color: #2a3934;
   color: #ffffff;
   cursor: pointer;
+}
+
+.error {
+  background-color: #ac5c5c;
+  padding: 15px 45px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 5px solid #495853;
+  border-radius: 25px;
+  margin: 10px 30px;
 }
 
 @media only screen and (max-width: 720px) {
