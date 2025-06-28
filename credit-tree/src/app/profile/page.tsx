@@ -1,73 +1,33 @@
-import styles from "./page.module.css";
-import Image from "next/image";
-import Link from "next/link";
+"use server";
 
-export default function Profile() {
+import Page from "./page.client";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import prisma from "@/app/prisma";
+
+export default async function Profile() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+
+  const user = await prisma.user_data.findUnique({
+    where: { id: data.user.id },
+  });
+
+  console.log("user:", user);
+
+  // console.log("User data:", data.user);
+
   return (
-    <div className={styles.container}>
-      <div className={`fontPacifico ${styles.dividerContainer}`}>
-        <div className={styles.dividerLine} />
-        <div className={`fontPacifico ${styles.divider}`}>Profile</div>
-        <div className={styles.dividerLine} />
-      </div>
-      <Image
-        className={styles.profile}
-        src="/resources/profile-images/grey-profile-icon.png"
-        width={250}
-        height={250}
-        alt="email"
+    <>
+      <Page
+        name={user?.name || ""}
+        email={user?.email || ""}
+        profile_image={user?.profile_image || 0}
       />
-      <div className={`fontPaytone ${styles.name}`}>Asher De Souza</div>
-      <div className={`fontPaytone ${styles.email}`}>
-        asher.desouza@ada.ac.uk
-      </div>
-      <div className={`${styles.editContainer}`}>
-        <div>
-          <Image
-            className={styles.editIcon}
-            src="/resources/edit.png"
-            width={30}
-            height={30}
-            alt="edit"
-          />
-          <Link
-            href="profile/edit"
-            className={`fontPaytone ${styles.editButton}`}
-          >
-            Edit Profile
-          </Link>
-        </div>
-        <div>
-          <Image
-            className={styles.changePasswordIcon}
-            src="/resources/key.png"
-            width={45}
-            height={45}
-            alt="edit"
-          />
-          <Link
-            href="profile/change-password"
-            className={`fontPaytone ${styles.changePasswordButton}`}
-          >
-            Change Password
-          </Link>
-        </div>
-      </div>
-      <div>
-        <Image
-          className={styles.deleteIcon}
-          src="/resources/bin.png"
-          width={32}
-          height={35}
-          alt="delete"
-        />
-        <Link
-          href="profile/delete-account"
-          className={`fontPaytone ${styles.deleteButton}`}
-        >
-          Delete Account
-        </Link>
-      </div>
-    </div>
+    </>
   );
 }
