@@ -3,15 +3,12 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
-import { createUser } from "@/app/get-started/register/page";
-
-const initialState = {
-  message: "",
-};
+import { createUser } from "@/app/register/page";
 
 export default function Page() {
-  const [state, formAction, pending] = useActionState(createUser, initialState);
-  const showErrorMessage = true;
+  const [state, formAction, pending] = useActionState(createUser, {
+    message: "",
+  });
 
   return (
     <form className={styles.container} action={formAction}>

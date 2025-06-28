@@ -10,10 +10,7 @@ export default function GetStarted() {
         <div className={`fontPavanam ${styles.subtitle}`}>
           If you’ve already got an account, log in to continue your journey!
         </div>
-        <Link
-          href="/get-started/login"
-          className={`fontPaytone ${styles.login}`}
-        >
+        <Link href="/login" className={`fontPaytone ${styles.login}`}>
           LOGIN
         </Link>
         <div className={`fontPacifico ${styles.dividerContainer}`}>
@@ -21,10 +18,7 @@ export default function GetStarted() {
           <div className={`fontPavanam ${styles.divider}`}>or</div>
           <div className={styles.dividerLine} />
         </div>
-        <Link
-          href="/get-started/register"
-          className={`fontPaytone ${styles.signup}`}
-        >
+        <Link href="/register" className={`fontPaytone ${styles.signup}`}>
           REGISTER
         </Link>
         <Image

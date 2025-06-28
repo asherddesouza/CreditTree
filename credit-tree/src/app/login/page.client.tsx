@@ -1,9 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useActionState } from "react";
+import { loginUser } from "@/app/login/page";
 
 export default function Login() {
+  const [state, formAction, pending] = useActionState(loginUser, {
+    message: "",
+  });
+
   return (
-    <div className={styles.container}>
+    <form className={styles.container} action={formAction}>
       <div className={`fontPaytone ${styles.title}`}>Welcome Back!</div>
 
       <div>
@@ -17,6 +25,7 @@ export default function Login() {
         <input
           type="email"
           placeholder="Email Address"
+          name="email"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
@@ -32,11 +41,22 @@ export default function Login() {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
 
-      <button className={`fontPaytone ${styles.signup}`}>LOGIN</button>
-    </div>
+      {state?.message && (
+        <div className={`fontPavanam ${styles.error}`}>{state.message}</div>
+      )}
+
+      <button
+        className={`fontPaytone ${styles.signup}`}
+        type="submit"
+        disabled={pending}
+      >
+        LOGIN
+      </button>
+    </form>
   );
 }

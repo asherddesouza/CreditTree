@@ -57,6 +57,7 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
         ref={birdRef}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
+        scale={3}
         // position-z={4}
       >
         <group>

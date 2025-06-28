@@ -1,19 +1,17 @@
-"use client";
+"use server";
 
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import CreditTree from "./page.client";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
 
-export default function Scene() {
-  return (
-    <Canvas
-      camera={{
-        fov: 45,
-        near: 0.1,
-        far: 400,
-        position: [-30, 0, 20],
-      }}
-    >
-      <CreditTree />
-    </Canvas>
-  );
+export default async function Scene() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+
+  return <CreditTree />;
 }

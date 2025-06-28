@@ -1,12 +1,17 @@
 "use server";
 
 import Page from "./page.client";
-import { redirect } from "next/navigation";
 import prisma from "@/app/prisma";
 import validator from "validator";
 import bcrypt from "bcrypt";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server";
+import { v4 as uuidv4 } from "uuid";
 
 export async function createUser(prevState: any, formData: FormData) {
+  const supabase = await createClient();
+
   let name = formData.get("name");
   let email = formData.get("email");
   let password = formData.get("password");
@@ -53,15 +58,27 @@ export async function createUser(prevState: any, formData: FormData) {
     };
   }
 
-  console.log({ name, email, password, confirmPassword });
+  const data = {
+    email: email,
+    password: password,
+  };
+
+  const { error } = await supabase.auth.signUp(data);
+
+  if (error) {
+    return { message: "There was an error when signing up." };
+  }
 
   const user = await prisma.user_data.create({
     data: {
-      name: name as string,
-      email: email as string,
+      name: name,
+      email: email,
       password: await bcrypt.hash(password, 10),
     },
   });
+
+  revalidatePath("/tree");
+  redirect("/tree");
 }
 
 export default async function CreateAccount() {
