@@ -58,21 +58,23 @@ export async function createUser(prevState: any, formData: FormData) {
     };
   }
 
-  const data = {
-    email: email,
-    password: password,
-  };
-
-  const { error } = await supabase.auth.signUp(data);
+  const { data, error } = await supabase.auth.signUp({ email, password });
 
   if (error) {
     return { message: "There was an error when signing up." };
   }
 
+  const supabaseUserId = data.user?.id;
+
+  if (!supabaseUserId) {
+    return { message: "Could not retrieve user ID after sign up." };
+  }
+
   const user = await prisma.user_data.create({
     data: {
-      name: name,
-      email: email,
+      id: supabaseUserId,
+      name,
+      email,
       password: await bcrypt.hash(password, 10),
     },
   });

@@ -13,5 +13,7 @@ export default async function Scene() {
     redirect("/login");
   }
 
+  console.log("User data:", data.user);
+
   return <CreditTree />;
 }
