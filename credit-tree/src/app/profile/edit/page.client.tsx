@@ -2,16 +2,20 @@
 
 import styles from "./page.module.css";
 import Image from "next/image";
-import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
+import { useActionState } from "react";
+import { editUser } from "@/app/profile/edit/page";
 
 interface ProfileProps {
-  name: string;
   email: string;
   profile_image?: number;
+  uuid: string;
 }
 
-export default function Page({ name, email, profile_image }: ProfileProps) {
+export default function Page({ email, profile_image, uuid }: ProfileProps) {
+  const [state, formAction, pending] = useActionState(editUser, {
+    message: "",
+  });
   const [currentProfileImage, setCurrentProfileImage] = useState(
     profile_image ?? 0
   );
@@ -71,65 +75,74 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
     <div className={styles.container}>
       <div className={`fontPacifico ${styles.dividerContainer}`}>
         <div className={styles.dividerLine} />
-        <div className={`fontPacifico ${styles.divider}`}>Profile</div>
+        <div className={`fontPacifico ${styles.divider}`}>Edit Profile</div>
         <div className={styles.dividerLine} />
       </div>
-      <Image
-        className={styles.profile}
-        src={profileImageSrc}
-        width={250}
-        height={250}
-        alt="email"
-      />
-      <div className={`fontPaytone ${styles.name}`}>{name}</div>
-      <div className={`fontPaytone ${styles.email}`}>{email}</div>
-      <div className={`${styles.editContainer}`}>
-        <div>
-          <Image
-            className={styles.editIcon}
-            src="/resources/edit.png"
-            width={30}
-            height={30}
-            alt="edit"
-          />
-          <Link
-            href="profile/edit"
-            className={`fontPaytone ${styles.editButton}`}
-          >
-            Edit Profile
-          </Link>
-        </div>
-        <div>
-          <Image
-            className={styles.changePasswordIcon}
-            src="/resources/key.png"
-            width={45}
-            height={45}
-            alt="edit"
-          />
-          <Link
-            href="profile/change-password"
-            className={`fontPaytone ${styles.changePasswordButton}`}
-          >
-            Change Password
-          </Link>
-        </div>
-      </div>
-      <div>
+      <div className={styles.profileContainer}>
+        <button className={styles.leftArrow} onClick={prevProfileImage} />
         <Image
-          className={styles.deleteIcon}
-          src="/resources/bin.png"
-          width={32}
-          height={35}
-          alt="delete"
+          className={styles.profile}
+          src={profileImageSrc}
+          width={250}
+          height={250}
+          alt="email"
         />
-        <Link
-          href="profile/delete-account"
-          className={`fontPaytone ${styles.deleteButton}`}
-        >
-          Delete Account
-        </Link>
+        <button className={styles.rightArrow} onClick={nextProfileImage} />
       </div>
+      <div className={`fontPavanam ${styles.currentEmail}`}>
+        Current email: {email}
+      </div>
+      <form className={styles.form} action={formAction}>
+        <div>
+          <Image
+            className={styles.emailIcon}
+            src="/resources/mail.png"
+            width={45}
+            height={30}
+            alt="email"
+          />
+          <input
+            type="email"
+            placeholder="New Email Address"
+            name="new_email"
+            className={`fontPavanam ${styles.field}`}
+          />
+          <input
+            type="hidden"
+            name="new_profile_image"
+            value={currentProfileImage}
+            readOnly
+          />
+          <input
+            type="hidden"
+            name="current_email"
+            value={email ?? ""}
+            readOnly
+          />
+          <input type="hidden" name="uuid" value={uuid ?? ""} readOnly />
+        </div>
+
+        {state?.message && (
+          <div className={`fontPavanam ${styles.error}`}>{state.message}</div>
+        )}
+
+        <div>
+          <Image
+            className={styles.saveIcon}
+            src="/resources/save.png"
+            width={32}
+            height={32}
+            alt="password"
+          />
+          <button
+            className={`fontPaytone ${styles.saveButton}`}
+            disabled={pending}
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

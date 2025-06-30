@@ -7,7 +7,6 @@ import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-import { v4 as uuidv4 } from "uuid";
 
 export async function createUser(prevState: any, formData: FormData) {
   const supabase = await createClient();
@@ -67,7 +66,7 @@ export async function createUser(prevState: any, formData: FormData) {
   const supabaseUserId = data.user?.id;
 
   if (!supabaseUserId) {
-    return { message: "Could not retrieve user ID after sign up." };
+    return { message: "Couldn't retrieve user ID after signing up." };
   }
 
   const user = await prisma.user_data.create({
