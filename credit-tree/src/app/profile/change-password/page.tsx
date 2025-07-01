@@ -4,32 +4,15 @@ import Page from "./page.client";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import prisma from "@/app/prisma";
 import validator from "validator";
+import { verifyPassword } from "@/utils/helpers";
 
 export async function changePassword(prevData: any, formData: FormData) {
   const supabase = await createClient();
 
-  async function verifyPassword(password: string): Promise<boolean> {
-    const { data, error } = await supabase.rpc("verify_user_password", {
-      input_plain_password: password,
-    });
-
-    console.log("verifyPassword data:", data);
-
-    if (data.valid) {
-      console.log("Password verification successful.");
-      return true;
-    } else {
-      console.log("Password verification failed.");
-      return false;
-    }
-  }
-
   let oldPasswordEntry = formData.get("old_password");
   let newPasswordEntry = formData.get("new_password");
   let confirmNewPasswordEntry = formData.get("confirm_new_password");
-  let email = formData.get("email");
 
   oldPasswordEntry = oldPasswordEntry
     ? (oldPasswordEntry as string).trim()
@@ -40,14 +23,10 @@ export async function changePassword(prevData: any, formData: FormData) {
   confirmNewPasswordEntry = confirmNewPasswordEntry
     ? (confirmNewPasswordEntry as string).trim()
     : "";
-  email = email ? (email as string).trim() : "";
 
-  const uuid = formData.get("uuid");
-
-  console.log("oldPasswordEntry", oldPasswordEntry);
-  console.log("newPasswordEntry", newPasswordEntry);
-  console.log("confirmNewPasswordEntry", confirmNewPasswordEntry);
-  console.log("uuid", uuid);
+  // console.log("oldPasswordEntry", oldPasswordEntry);
+  // console.log("newPasswordEntry", newPasswordEntry);
+  // console.log("confirmNewPasswordEntry", confirmNewPasswordEntry);
 
   let pattern = new RegExp(
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
@@ -112,5 +91,5 @@ export default async function ChangePassword() {
 
   // console.log("pwd", user?.password);
 
-  return <Page uuid={data.user?.id || ""} email={data.user?.email || ""} />;
+  return <Page />;
 }

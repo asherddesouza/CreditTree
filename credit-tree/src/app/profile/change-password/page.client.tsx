@@ -5,12 +5,7 @@ import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
 import { changePassword } from "@/app/profile/change-password/page";
 
-interface ChangePasswordProps {
-  uuid: string;
-  email: string;
-}
-
-export default function Page({ uuid, email }: ChangePasswordProps) {
+export default function Page() {
   const [state, formAction, pending] = useActionState(changePassword, {
     message: "",
   });
@@ -71,8 +66,6 @@ export default function Page({ uuid, email }: ChangePasswordProps) {
             placeholder="Confirm New Password"
             className={`fontPavanam ${styles.field}`}
           />
-          <input type="hidden" name="uuid" value={uuid ?? ""} readOnly />
-          <input type="hidden" name="email" value={email ?? ""} readOnly />
         </div>
 
         {state?.message && (
