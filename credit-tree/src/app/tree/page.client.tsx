@@ -7,6 +7,7 @@ import {
   Environment,
   Cloud,
   Clouds,
+  Html,
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { ToneMapping, EffectComposer } from "@react-three/postprocessing";
@@ -20,6 +21,8 @@ import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function CreditTree() {
   return (
@@ -32,11 +35,25 @@ export default function CreditTree() {
           position: [-30, 0, 20],
         }}
       >
+        <Html fullscreen>
+          <Link className={styles.topRightOverlay} href="/profile">
+            <button className={styles.profileButton}>
+              <Image
+                className={styles.profileIcon}
+                src="/resources/profile.png"
+                width={35}
+                height={50}
+                alt="profile"
+              />
+            </button>
+          </Link>
+        </Html>
+
+        <Perf position="top-left" />
+
         <EffectComposer>
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
         </EffectComposer>
-
-        <Perf position="top-left" />
 
         <Environment
           files="./textures/autumn_field_puresky_4k.hdr"

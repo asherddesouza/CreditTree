@@ -1,53 +1,47 @@
-import styles from "./page.module.css";
-import Image from "next/image";
-import Link from "next/link";
+"use server";
 
-export default function DeleteAccount() {
-  return (
-    <div className={styles.container}>
-      <div className={`fontPacifico ${styles.dividerContainer}`}>
-        <div className={styles.dividerLine} />
-        <div className={`fontPacifico ${styles.divider}`}>Delete Account</div>
-        <div className={styles.dividerLine} />
-      </div>
-      <div className={`fontPavanam ${styles.description}`}>
-        Are you sure you want to delete your account? This is a permanent
-        action.
-      </div>
-      <div>
-        <Image
-          className={styles.padlockIcon}
-          src="/resources/padlock.png"
-          width={53}
-          height={45}
-          alt="password"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className={`fontPavanam ${styles.field}`}
-        />
-      </div>
-      <div className={`fontPavanam ${styles.description}`}>
-        Type CONFIRM into the field below if you're sure.
-      </div>
-      <input
-        type="text"
-        placeholder="CONFIRM"
-        className={`fontPavanam ${styles.field} ${styles.confirmationField}`}
-      />
-      <div className={styles.deleteButtonContainer}>
-        <Image
-          className={styles.deleteIcon}
-          src="/resources/bin.png"
-          width={32}
-          height={35}
-          alt="delete"
-        />
-        <div className={`fontPaytone ${styles.deleteButton}`}>
-          Delete Account
-        </div>
-      </div>
-    </div>
-  );
+import Page from "./page.client";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import validator from "validator";
+import { verifyPassword } from "@/utils/helpers";
+
+export async function deleteAccount(prevData: any, formData: FormData) {
+  const supabase = await createClient();
+
+  let confirmEntry = formData.get("confirm");
+  let passwordEntry = formData.get("password");
+
+  confirmEntry = confirmEntry ? (confirmEntry as string).trim() : "";
+  passwordEntry = passwordEntry ? (passwordEntry as string).trim() : "";
+
+  if (confirmEntry !== "CONFIRM") {
+    return {
+      message: "You must type CONFIRM to delete your account.",
+    };
+  }
+
+  if (!(await verifyPassword(passwordEntry))) {
+    return {
+      message: "Your old password is incorrect.",
+    };
+  }
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data, error } = await supabase.auth.admin.deleteUser(user?.id || "");
+
+  revalidatePath("/register");
+  redirect("/register");
+
+  return {
+    message: "Successfully deleted your account.",
+  };
+}
+
+export default async function DeleteAccount() {
+  return <Page />;
 }

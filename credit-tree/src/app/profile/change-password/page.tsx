@@ -1,61 +1,95 @@
-import styles from "./page.module.css";
-import Image from "next/image";
+"use server";
 
-export default function ChangePassword() {
-  return (
-    <div className={styles.container}>
-      <div className={`fontPacifico ${styles.dividerContainer}`}>
-        <div className={styles.dividerLine} />
-        <div className={`fontPacifico ${styles.divider}`}>Change Password</div>
-        <div className={styles.dividerLine} />
-      </div>
-      <div className={`fontPavanam ${styles.description}`}>
-        Your new password must be at least 8 characters long and contain at
-        least one uppercase letter, one lowercase letter, and one number.
-      </div>
-      <div>
-        <Image
-          className={styles.padlockIcon}
-          src="/resources/padlock.png"
-          width={53}
-          height={45}
-          alt="password"
-        />
-        <input
-          type="password"
-          placeholder="Old Password"
-          className={`fontPavanam ${styles.field}`}
-        />
-      </div>
-      <div>
-        <Image
-          className={styles.padlockIcon}
-          src="/resources/padlock.png"
-          width={53}
-          height={45}
-          alt="password"
-        />
-        <input
-          type="password"
-          placeholder="New Password"
-          className={`fontPavanam ${styles.field}`}
-        />
-      </div>
-      <div>
-        <Image
-          className={styles.padlockIcon}
-          src="/resources/padlock.png"
-          width={53}
-          height={45}
-          alt="password"
-        />
-        <input
-          type="password"
-          placeholder="Confirm New Password"
-          className={`fontPavanam ${styles.field}`}
-        />
-      </div>
-      <div className={`fontPaytone ${styles.submitButton}`}>Submit</div>
-    </div>
+import Page from "./page.client";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import validator from "validator";
+import { verifyPassword } from "@/utils/helpers";
+
+export async function changePassword(prevData: any, formData: FormData) {
+  const supabase = await createClient();
+
+  let oldPasswordEntry = formData.get("old_password");
+  let newPasswordEntry = formData.get("new_password");
+  let confirmNewPasswordEntry = formData.get("confirm_new_password");
+
+  oldPasswordEntry = oldPasswordEntry
+    ? (oldPasswordEntry as string).trim()
+    : "";
+  newPasswordEntry = newPasswordEntry
+    ? (newPasswordEntry as string).trim()
+    : "";
+  confirmNewPasswordEntry = confirmNewPasswordEntry
+    ? (confirmNewPasswordEntry as string).trim()
+    : "";
+
+  // console.log("oldPasswordEntry", oldPasswordEntry);
+  // console.log("newPasswordEntry", newPasswordEntry);
+  // console.log("confirmNewPasswordEntry", confirmNewPasswordEntry);
+
+  let pattern = new RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
   );
+
+  if (
+    oldPasswordEntry === "" ||
+    newPasswordEntry === "" ||
+    confirmNewPasswordEntry === ""
+  ) {
+    return { message: "You can't have any empty fields." };
+  }
+
+  if (!validator.equals(newPasswordEntry, confirmNewPasswordEntry)) {
+    return {
+      message: "Your passwords don't match. Please retry.",
+    };
+  }
+
+  if (validator.equals(oldPasswordEntry, newPasswordEntry)) {
+    return {
+      message: "Your new password can't be the same as your old password.",
+    };
+  }
+
+  if (!validator.isLength(newPasswordEntry, { min: 8 })) {
+    return {
+      message: "Your password must be at least 8 characters long.",
+    };
+  }
+
+  if (!pattern.test(newPasswordEntry)) {
+    return {
+      message:
+        "Your password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    };
+  }
+
+  if (!(await verifyPassword(oldPasswordEntry))) {
+    return {
+      message: "Your old password is incorrect.",
+    };
+  }
+
+  const { data, error } = await supabase.auth.updateUser({
+    password: newPasswordEntry,
+  });
+
+  revalidatePath("/profile");
+  redirect("/profile");
+}
+
+export default async function ChangePassword() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    redirect("/login");
+  }
+
+  // console.log("user", data.user);
+
+  // console.log("pwd", user?.password);
+
+  return <Page />;
 }
