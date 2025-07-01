@@ -2,8 +2,7 @@
 
 import styles from "./page.module.css";
 import Image from "next/image";
-import { useState, useEffect, use } from "react";
-import { useActionState } from "react";
+import { useState, useEffect, useActionState } from "react";
 import { editUser } from "@/app/profile/edit/page";
 
 interface ProfileProps {

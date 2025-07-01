@@ -3,7 +3,6 @@
 import Page from "./page.client";
 import prisma from "@/app/prisma";
 import validator from "validator";
-import bcrypt from "bcrypt";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
@@ -74,7 +73,6 @@ export async function createUser(prevState: any, formData: FormData) {
       id: supabaseUserId,
       name,
       email,
-      password: await bcrypt.hash(password, 10),
     },
   });
 

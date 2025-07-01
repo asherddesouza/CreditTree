@@ -17,9 +17,7 @@ export default async function Profile() {
     where: { id: data.user.id },
   });
 
-  console.log("user:", user);
-
-  // console.log("User data:", data.user);
+  // console.log("user:", user);
 
   return (
     <>
