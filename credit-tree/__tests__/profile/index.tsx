@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Page from "../../src/app/profile/page.client";
 
-describe("Page", () => {
+describe("Profile", () => {
   it("renders the page with the correct text", () => {
     render(<Page name="Test User" email="test@ada.ac.uk" />);
 

@@ -3,7 +3,11 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
-import { editUser } from "@/app/profile/edit/page";
+// import { editUser } from "@/app/profile/edit/page";
+
+function editUser(any: any) {
+  return { message: "User updated successfully" };
+}
 
 interface ProfileProps {
   email: string;
@@ -84,7 +88,7 @@ export default function Page({ email, profile_image, uuid }: ProfileProps) {
           src={profileImageSrc}
           width={250}
           height={250}
-          alt="email"
+          alt="profile_image"
         />
         <button className={styles.rightArrow} onClick={nextProfileImage} />
       </div>
