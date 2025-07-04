@@ -19,14 +19,6 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
     "/resources/profile-images/grey-profile-icon.png"
   );
 
-  function nextProfileImage() {
-    setCurrentProfileImage((prev) => (prev + 1) % 10);
-  }
-
-  function prevProfileImage() {
-    setCurrentProfileImage((prev) => (prev - 1 + 10) % 10);
-  }
-
   useEffect(() => {
     switch (currentProfileImage) {
       case 0:
@@ -79,7 +71,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
         src={profileImageSrc}
         width={250}
         height={250}
-        alt="email"
+        alt="profile_image"
       />
       <div className={`fontPaytone ${styles.name}`}>{name}</div>
       <div className={`fontPaytone ${styles.email}`}>{email}</div>
