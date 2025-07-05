@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
 import { loginUser } from "@/app/login/page";
+import Link from "next/link";
 
 export default function Login() {
   const [state, formAction, pending] = useActionState(loginUser, {
@@ -57,6 +58,10 @@ export default function Login() {
       >
         LOGIN
       </button>
+
+      <Link href="/register" className={`fontPavanam ${styles.register}`}>
+        Haven't registered yet? Click to sign up!
+      </Link>
     </form>
   );
 }

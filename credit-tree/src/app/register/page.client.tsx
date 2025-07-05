@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
 import { createUser } from "@/app/register/page";
+import Link from "next/link";
 
 export default function Page() {
   const [state, formAction, pending] = useActionState(createUser, {
@@ -88,6 +89,10 @@ export default function Page() {
       >
         SIGN UP
       </button>
+
+      <Link href="/login" className={`fontPavanam ${styles.login}`}>
+        Already have an account? Click here to login.
+      </Link>
     </form>
   );
 }
