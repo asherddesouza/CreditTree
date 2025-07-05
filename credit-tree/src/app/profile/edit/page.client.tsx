@@ -3,11 +3,11 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
-// import { editUser } from "@/app/profile/edit/page";
+import { editUser } from "@/app/profile/edit/page";
 
-function editUser(any: any) {
-  return { message: "User updated successfully" };
-}
+// function editUser(any: any) {
+//   return { message: "User updated successfully" };
+// }
 
 interface ProfileProps {
   email: string;
