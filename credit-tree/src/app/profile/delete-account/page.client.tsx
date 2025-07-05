@@ -6,6 +6,10 @@ import Link from "next/link";
 import { useActionState } from "react";
 import { deleteAccount } from "./page";
 
+// function deleteAccount(any: any) {
+//   return { message: "User updated successfully" };
+// }
+
 export default function Page() {
   const [state, formAction, pending] = useActionState(deleteAccount, {
     message: "",
@@ -15,7 +19,12 @@ export default function Page() {
     <div className={styles.container}>
       <div className={`fontPacifico ${styles.dividerContainer}`}>
         <div className={styles.dividerLine} />
-        <div className={`fontPacifico ${styles.divider}`}>Delete Account</div>
+        <div
+          className={`fontPacifico ${styles.divider}`}
+          aria-label="Delete Account Header"
+        >
+          Delete Account
+        </div>
         <div className={styles.dividerLine} />
       </div>
       <form className={styles.form} action={formAction}>
@@ -63,6 +72,7 @@ export default function Page() {
           <button
             className={`fontPaytone ${styles.deleteButton}`}
             disabled={pending}
+            aria-label="Delete Account Button"
           >
             Delete Account
           </button>

@@ -5,6 +5,10 @@ import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
 import { changePassword } from "@/app/profile/change-password/page";
 
+// function changePassword(any: any) {
+//   return { message: "User updated successfully" };
+// }
+
 export default function Page() {
   const [state, formAction, pending] = useActionState(changePassword, {
     message: "",
