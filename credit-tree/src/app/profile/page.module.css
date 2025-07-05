@@ -52,7 +52,8 @@ body {
 }
 
 .editButton,
-.changePasswordButton {
+.changePasswordButton,
+.logoutButton {
   padding: 10px 30px;
   padding-left: 80px;
   background-color: #d9d9d9;
@@ -62,6 +63,11 @@ body {
   font-size: 24px;
   text-decoration: none;
   margin: 20px 5px;
+}
+
+.logoutButton {
+  padding-left: 30px;
+  margin: -10px 5px 30px 5px;
 }
 
 .editIcon {
@@ -77,7 +83,8 @@ body {
 }
 
 .editButton:hover,
-.changePasswordButton:hover {
+.changePasswordButton:hover,
+.logoutButton:hover {
   background-color: #ffffff;
   cursor: pointer;
 }
@@ -103,6 +110,13 @@ body {
 .deleteButton:hover {
   background-color: #9b5050;
   cursor: pointer;
+}
+
+.accountControlsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 @media only screen and (max-width: 660px) {
