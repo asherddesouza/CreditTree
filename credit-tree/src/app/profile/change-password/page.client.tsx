@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
 import { changePassword } from "@/app/profile/change-password/page";
+import { redirect } from "next/navigation";
 
 // function changePassword(any: any) {
 //   return { message: "User updated successfully" };
@@ -16,6 +17,14 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
+      <button
+        className={`fontPacifico ${styles.backButton}`}
+        onClick={() => {
+          redirect("/profile");
+        }}
+      >
+        ⬅
+      </button>
       <div className={`fontPacifico ${styles.dividerContainer}`}>
         <div className={styles.dividerLine} />
         <div className={`fontPacifico ${styles.divider}`}>Change Password</div>

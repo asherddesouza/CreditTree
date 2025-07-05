@@ -138,6 +138,23 @@ body {
   margin: 10px 30px;
 }
 
+.backButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30px;
+  border: 5px solid #495853;
+  border-radius: 100px;
+  padding: 0px 0px;
+  background-color: #d9d9d9;
+  width: 65px;
+}
+
+.backButton:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 690px) {
   .field {
     width: 400px;
@@ -150,6 +167,12 @@ body {
 @media only screen and (max-width: 590px) {
   .dividerLine {
     width: 0px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .divider {
+    padding-top: 50px;
   }
 }
 

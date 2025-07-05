@@ -74,6 +74,14 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
 
   return (
     <div className={styles.container}>
+      <button
+        className={`fontPacifico ${styles.backButton}`}
+        onClick={() => {
+          redirect("/tree");
+        }}
+      >
+        ⬅
+      </button>
       <div className={`fontPacifico ${styles.dividerContainer}`}>
         <div className={styles.dividerLine} />
         <div className={`fontPacifico ${styles.divider}`}>Profile</div>
