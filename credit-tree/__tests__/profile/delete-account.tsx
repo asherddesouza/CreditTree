@@ -6,10 +6,10 @@ describe("Delete Account", () => {
   it("renders the page correctly", () => {
     render(<Page />);
 
-    const heading = screen.getByText("Delete Account");
+    const heading = screen.getByLabelText("Delete Account Header");
     const infoTooltip = screen.getByText(/Are you sure/);
     const confirmTooltip = screen.getByText(/Type CONFIRM/);
-    const deleteButton = screen.getByText("Delete Account");
+    const deleteButton = screen.getByLabelText("Delete Account Button");
 
     expect(heading.textContent).toBe("Delete Account");
     expect(infoTooltip.textContent).toBe(
