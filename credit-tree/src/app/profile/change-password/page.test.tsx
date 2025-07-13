@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import Page from "../../src/app/profile/change-password/page.client";
+import Page from "./page.client";
 
 describe("Edit Profile", () => {
   it("renders the page correctly", () => {

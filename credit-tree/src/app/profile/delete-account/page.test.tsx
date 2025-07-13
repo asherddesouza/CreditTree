@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import Page from "../../src/app/profile/delete-account/page.client";
+import Page from "./page.client";
 
 describe("Delete Account", () => {
   it("renders the page correctly", () => {
