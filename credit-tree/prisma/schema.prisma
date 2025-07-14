@@ -14,11 +14,11 @@ datasource db {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model user_data {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id            String   @id @db.Uuid
   name          String?
-  email         String?
   profile_image Int?     @default(0) @db.SmallInt
   created_at    DateTime @default(now()) @db.Timestamptz(6)
+  email         String?
 
   @@map("user-data")
   @@schema("public")
@@ -143,6 +143,173 @@ model user_data {
 // model users {
 // @@schema("auth")
 // }
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_addresses_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-addresses-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_court_orders_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-court-orders-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_electoral_roll_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-electoral-roll-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_financial_accounts_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-financial-accounts-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_fraud_warnings_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-fraud-warnings-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_insolvencies_v1 {
+  id         String   @id(map: "creditreport-fraud-warning-v1_pkey") @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-insolvencies-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_monthly_scores_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-monthly-scores-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_notices_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-notices-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_payment_history_overview_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-payment-history-overview-v1")
+  @@schema("public")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_personal_details_v1 {
+  id         String   @id(map: "personal-details-v1_pkey") @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-personal-details-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_ranked_insights_by_month_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-ranked-insights-by-month-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_ranked_insights_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-ranked-insights-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_score_change_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-score-change-v1")
+  @@schema("public")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model creditreport_scores_v1 {
+  id         String   @id @db.Uuid
+  bureau     String?
+  json       Json?    @db.Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("creditreport-scores-v1")
+  @@schema("public")
+}
 
 enum aal_level {
   aal1
