@@ -9,6 +9,7 @@ import { redirect } from "next/navigation";
 import PersonalDetailsV1Seeder from "@/utils/seeding/creditreport-personal-details-v1-seeder";
 import ElectoralRollV1Seeder from "@/utils/seeding/creditreport-electoral-roll-v1-seeder";
 import AddressesV1Seeder from "@/utils/seeding/creditreport-addresses-v1-seeder";
+import CourtOrdersV1Seeder from "@/utils/seeding/creditreport-court-orders-v1-seeder";
 
 interface ProfileProps {
   name: string;
@@ -153,7 +154,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
             Delete Account
           </Link>
         </div>
-        <button onClick={AddressesV1Seeder}>CALL DB FUNCTION</button>
+        <button onClick={CourtOrdersV1Seeder}>CALL DB FUNCTION</button>
       </div>
     </div>
   );
