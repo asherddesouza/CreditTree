@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { redirect } from "next/navigation";
 import PersonalDetailsV1Seeder from "@/utils/seeding/personal-details-v1-seeder";
+import ElectoralRollV1Seeder from "@/utils/seeding/electoral-roll-v1-seeder"; // Uncomment if needed
 
 interface ProfileProps {
   name: string;
@@ -151,7 +152,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
             Delete Account
           </Link>
         </div>
-        <button onClick={PersonalDetailsV1Seeder}>CALL DB FUNCTION</button>
+        <button onClick={ElectoralRollV1Seeder}>CALL DB FUNCTION</button>
       </div>
     </div>
   );
