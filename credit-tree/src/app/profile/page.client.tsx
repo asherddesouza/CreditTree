@@ -10,6 +10,7 @@ import PersonalDetailsV1Seeder from "@/utils/seeding/creditreport-personal-detai
 import ElectoralRollV1Seeder from "@/utils/seeding/creditreport-electoral-roll-v1-seeder";
 import AddressesV1Seeder from "@/utils/seeding/creditreport-addresses-v1-seeder";
 import CourtOrdersV1Seeder from "@/utils/seeding/creditreport-court-orders-v1-seeder";
+import FinancialAccountsV1Seeder from "@/utils/seeding/creditreport-financial-accounts-v1-seeder";
 
 interface ProfileProps {
   name: string;
@@ -154,7 +155,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
             Delete Account
           </Link>
         </div>
-        <button onClick={CourtOrdersV1Seeder}>CALL DB FUNCTION</button>
+        <button onClick={FinancialAccountsV1Seeder}>CALL DB FUNCTION</button>
       </div>
     </div>
   );

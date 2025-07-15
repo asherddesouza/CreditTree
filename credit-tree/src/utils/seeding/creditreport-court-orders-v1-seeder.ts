@@ -3,7 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 import prisma from "@/app/prisma";
 
-type ScenarioKey = "noCourtOrders" | "oneCourtOrders" | "multipleCourtOrders";
+type ScenarioKey = "noCourtOrders" | "oneCourtOrder" | "multipleCourtOrders";
 
 function generateJsonData(uuid: string) {
   const jsonData = {
@@ -15,7 +15,7 @@ function generateJsonData(uuid: string) {
       courtOrders: null,
       reportTimestamp: 1683333295777,
     },
-    oneCourtOrders: {
+    oneCourtOrder: {
       bureau: "EQUIFAX",
       market: "UK",
       reportId: "42602713",
