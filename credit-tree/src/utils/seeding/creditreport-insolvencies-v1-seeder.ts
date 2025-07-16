@@ -63,7 +63,7 @@ export default async function InsolvenciesV1Seeder() {
 
     const jsonData = generateJsonData(user?.id || "");
 
-    console.log("Generated JSON Data:", jsonData);
+    // console.log("Generated JSON Data:", jsonData);
 
     const seedingData = await prisma.creditreport_insolvencies_v1.create({
       data: {

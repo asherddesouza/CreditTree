@@ -13,6 +13,7 @@ import CourtOrdersV1Seeder from "@/utils/seeding/creditreport-court-orders-v1-se
 import FinancialAccountsV1Seeder from "@/utils/seeding/creditreport-financial-accounts-v1-seeder";
 import FraudWarningsV1Seeder from "@/utils/seeding/creditreport-fraud-warnings-v1-seeder";
 import InsolvenciesV1Seeder from "@/utils/seeding/creditreport-insolvencies-v1-seeder";
+import MonthlyScoresV1Seeder from "@/utils/seeding/creditreport-monthly-scores-v1-seeder";
 
 interface ProfileProps {
   name: string;
@@ -157,7 +158,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
             Delete Account
           </Link>
         </div>
-        <button onClick={InsolvenciesV1Seeder}>CALL DB FUNCTION</button>
+        <button onClick={MonthlyScoresV1Seeder}>CALL DB FUNCTION</button>
       </div>
     </div>
   );
