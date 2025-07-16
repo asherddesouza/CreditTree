@@ -15,7 +15,8 @@ import FraudWarningsV1Seeder from "@/utils/seeding/creditreport-fraud-warnings-v
 import InsolvenciesV1Seeder from "@/utils/seeding/creditreport-insolvencies-v1-seeder";
 import MonthlyScoresV1Seeder from "@/utils/seeding/creditreport-monthly-scores-v1-seeder";
 import NoticesV1Seeder from "@/utils/seeding/creditreport-notices-v1-seeder";
-import PaymentHistoryOverviewV1Seeder from "@/utils/seeding/creditreport-payment-history-overview-seeder";
+import PaymentHistoryOverviewV1Seeder from "@/utils/seeding/creditreport-payment-history-overview-seeder-v1";
+import RankedInsightsByMonthV1Seeder from "@/utils/seeding/creditreport-ranked-insights-by-month-v1-seeder";
 
 interface ProfileProps {
   name: string;
@@ -160,7 +161,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
             Delete Account
           </Link>
         </div>
-        <button onClick={PaymentHistoryOverviewV1Seeder}>
+        <button onClick={RankedInsightsByMonthV1Seeder}>
           CALL DB FUNCTION
         </button>
       </div>
