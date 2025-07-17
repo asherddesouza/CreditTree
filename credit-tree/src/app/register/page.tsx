@@ -6,6 +6,17 @@ import validator from "validator";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import ElectoralRollV1Seeder from "@/utils/seeding/creditreport-electoral-roll-v1-seeder";
+import AddressesV1Seeder from "@/utils/seeding/creditreport-addresses-v1-seeder";
+import CourtOrdersV1Seeder from "@/utils/seeding/creditreport-court-orders-v1-seeder";
+import FinancialAccountsV1Seeder from "@/utils/seeding/creditreport-financial-accounts-v1-seeder";
+import FraudWarningsV1Seeder from "@/utils/seeding/creditreport-fraud-warnings-v1-seeder";
+import InsolvenciesV1Seeder from "@/utils/seeding/creditreport-insolvencies-v1-seeder";
+import MonthlyScoresV1Seeder from "@/utils/seeding/creditreport-monthly-scores-v1-seeder";
+import NoticesV1Seeder from "@/utils/seeding/creditreport-notices-v1-seeder";
+import PaymentHistoryOverviewV1Seeder from "@/utils/seeding/creditreport-payment-history-overview-seeder-v1";
+import RankedInsightsByMonthV1Seeder from "@/utils/seeding/creditreport-ranked-insights-by-month-v1-seeder";
+import SeedDatabase from "@/utils/seeding/seed-database";
 
 export async function createUser(prevState: any, formData: FormData) {
   const supabase = await createClient();
@@ -75,6 +86,22 @@ export async function createUser(prevState: any, formData: FormData) {
       email,
     },
   });
+
+  SeedDatabase(
+    [
+      "paymentHistory",
+      "notices",
+      "addresses",
+      "electoralRoll",
+      "courtOrders",
+      "financialAccounts",
+      "fraudWarnings",
+      "insolvencies",
+      "monthlyScores",
+      "rankedInsightsByMonth",
+    ],
+    user.id
+  );
 
   revalidatePath("/tree");
   redirect("/tree");
