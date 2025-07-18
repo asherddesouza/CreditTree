@@ -1,11 +1,22 @@
 "use server";
 
 import Page from "./page.client";
-import prisma from "@/app/prisma";
+import prisma from "../../../libs/prisma";
 import validator from "validator";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import ElectoralRollV1Seeder from "@/utils/seeding/src/creditreport-electoral-roll-v1-seeder";
+import AddressesV1Seeder from "@/utils/seeding/src/creditreport-addresses-v1-seeder";
+import CourtOrdersV1Seeder from "@/utils/seeding/src/creditreport-court-orders-v1-seeder";
+import FinancialAccountsV1Seeder from "@/utils/seeding/src/creditreport-financial-accounts-v1-seeder";
+import FraudWarningsV1Seeder from "@/utils/seeding/src/creditreport-fraud-warnings-v1-seeder";
+import InsolvenciesV1Seeder from "@/utils/seeding/src/creditreport-insolvencies-v1-seeder";
+import MonthlyScoresV1Seeder from "@/utils/seeding/src/creditreport-monthly-scores-v1-seeder";
+import NoticesV1Seeder from "@/utils/seeding/src/creditreport-notices-v1-seeder";
+import PaymentHistoryOverviewV1Seeder from "@/utils/seeding/src/creditreport-payment-history-overview-seeder-v1";
+import RankedInsightsByMonthV1Seeder from "@/utils/seeding/src/creditreport-ranked-insights-by-month-v1-seeder";
+import SeedDatabase from "@/utils/seeding/src/seed-database";
 
 export async function createUser(prevState: any, formData: FormData) {
   const supabase = await createClient();
@@ -75,6 +86,22 @@ export async function createUser(prevState: any, formData: FormData) {
       email,
     },
   });
+
+  SeedDatabase(
+    [
+      "paymentHistory",
+      "notices",
+      "addresses",
+      "electoralRoll",
+      "courtOrders",
+      "financialAccounts",
+      "fraudWarnings",
+      "insolvencies",
+      "monthlyScores",
+      "rankedInsightsByMonth",
+    ],
+    user.id
+  );
 
   revalidatePath("/tree");
   redirect("/tree");

@@ -52,7 +52,7 @@ body {
   color: #583e00;
   font-size: 2rem;
   text-decoration: none;
-  margin: 0px 20px 40px 20px;
+  margin: 0px 20px 20px 20px;
 }
 
 .signup:hover {
@@ -70,6 +70,14 @@ body {
   border: 5px solid #495853;
   border-radius: 25px;
   margin: 10px 30px;
+}
+
+.login {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin: 20px;
+  text-align: center;
 }
 
 @media only screen and (max-width: 720px) {

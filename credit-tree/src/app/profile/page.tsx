@@ -3,7 +3,7 @@
 import Page from "./page.client";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import prisma from "@/app/prisma";
+import prisma from "../../../libs/prisma";
 
 export default async function Profile() {
   const supabase = await createClient();

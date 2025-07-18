@@ -1,6 +1,6 @@
+import { render, screen, prettyDOM } from "@testing-library/react";
+import Page from "./page.client";
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
-import Page from "../../src/app/profile/page.client";
 
 describe("Profile", () => {
   it("renders the page with the correct text", () => {

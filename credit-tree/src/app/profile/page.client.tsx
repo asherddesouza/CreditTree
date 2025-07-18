@@ -4,6 +4,8 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { redirect } from "next/navigation";
 
 interface ProfileProps {
   name: string;
@@ -12,6 +14,17 @@ interface ProfileProps {
 }
 
 export default function Page({ name, email, profile_image }: ProfileProps) {
+  const supabase = createClient();
+
+  async function logoutUser() {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error logging out:", error);
+    } else {
+      redirect("/login");
+    }
+  }
+
   const [currentProfileImage, setCurrentProfileImage] = useState(
     profile_image ?? 0
   );
@@ -61,6 +74,14 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
 
   return (
     <div className={styles.container}>
+      <button
+        className={`fontPacifico ${styles.backButton}`}
+        onClick={() => {
+          redirect("/tree");
+        }}
+      >
+        ⬅
+      </button>
       <div className={`fontPacifico ${styles.dividerContainer}`}>
         <div className={styles.dividerLine} />
         <div className={`fontPacifico ${styles.divider}`}>Profile</div>
@@ -107,20 +128,28 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
           </Link>
         </div>
       </div>
-      <div>
-        <Image
-          className={styles.deleteIcon}
-          src="/resources/bin.png"
-          width={32}
-          height={35}
-          alt="delete"
-        />
-        <Link
-          href="profile/delete-account"
-          className={`fontPaytone ${styles.deleteButton}`}
+      <div className={`${styles.accountControlsContainer}`}>
+        <button
+          onClick={logoutUser}
+          className={`fontPaytone ${styles.logoutButton}`}
         >
-          Delete Account
-        </Link>
+          Logout
+        </button>
+        <div>
+          <Image
+            className={styles.deleteIcon}
+            src="/resources/bin.png"
+            width={32}
+            height={35}
+            alt="delete"
+          />
+          <Link
+            href="profile/delete-account"
+            className={`fontPaytone ${styles.deleteButton}`}
+          >
+            Delete Account
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useActionState } from "react";
 import { deleteAccount } from "./page";
+import { redirect } from "next/navigation";
 
 // function deleteAccount(any: any) {
 //   return { message: "User updated successfully" };
@@ -17,6 +18,14 @@ export default function Page() {
 
   return (
     <div className={styles.container}>
+      <button
+        className={`fontPacifico ${styles.backButton}`}
+        onClick={() => {
+          redirect("/profile");
+        }}
+      >
+        ⬅
+      </button>
       <div className={`fontPacifico ${styles.dividerContainer}`}>
         <div className={styles.dividerLine} />
         <div

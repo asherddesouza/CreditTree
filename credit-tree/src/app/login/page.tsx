@@ -1,7 +1,7 @@
 "use server";
 
 import Page from "./page.client";
-import prisma from "@/app/prisma";
+import prisma from "../../../libs/prisma";
 import validator from "validator";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
