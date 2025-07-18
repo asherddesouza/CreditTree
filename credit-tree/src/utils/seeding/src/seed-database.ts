@@ -28,7 +28,7 @@ import MonthlyScoresV1Seeder from "./creditreport-monthly-scores-v1-seeder";
 import { generateJsonData as RankedInsightsByMonthData } from "./creditreport-ranked-insights-by-month-v1-seeder";
 import RankedInsightsByMonthV1Seeder from "./creditreport-ranked-insights-by-month-v1-seeder";
 
-type SeedScenarios =
+export type SeedScenarios =
   | "paymentHistory"
   | "notices"
   | "addresses"
@@ -40,7 +40,7 @@ type SeedScenarios =
   | "rankedInsightsByMonth"
   | "electoralRoll";
 
-const scenarios = {
+export const scenarios = {
   paymentHistory: PaymentHistoryJsonData,
   notices: NoticesJsonData,
   addresses: AddressesJsonData,
@@ -56,6 +56,9 @@ const scenarios = {
 export function createSeeder(scenario: SeedScenarios, uuid: string) {
   const seeder = scenarios[scenario];
 
+  console.log("scenario:", scenario);
+  console.log("scenarios keys:", Object.keys(scenarios));
+
   if (!seeder) {
     throw new Error(`Seeder for scenario "${scenario}" not found.`);
   }
@@ -63,7 +66,7 @@ export function createSeeder(scenario: SeedScenarios, uuid: string) {
   return seeder(uuid);
 }
 
-const scenarioMap: Record<
+export const scenarioMap: Record<
   SeedScenarios,
   (uuid: string, jsonData?: Record<string, any>) => Promise<string>
 > = {

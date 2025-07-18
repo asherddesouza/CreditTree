@@ -1,6 +1,6 @@
 "use server";
 
-import prisma from "@/app/prisma";
+import prisma from "../../../../libs/prisma";
 
 type ScenarioKey = "recentlyMoved" | "noElectoralRoll" | "onElectoralRoll";
 
