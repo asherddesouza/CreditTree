@@ -17,7 +17,14 @@ interface InsightMessageProps {
     type: string;
   };
   description: string;
-  birdColour: "black" | "blue" | "green" | "red" | "yellow" | "purple" | "pink";
+  birdColour?:
+    | "black"
+    | "blue"
+    | "green"
+    | "red"
+    | "yellow"
+    | "purple"
+    | "pink";
 }
 
 export default function InsightMessage({
@@ -26,7 +33,7 @@ export default function InsightMessage({
   numberChange,
   infoCard,
   description,
-  birdColour,
+  birdColour = "black",
 }: InsightMessageProps) {
   return (
     <div className={`fontPavanam ${styles.insightMessageContainer}`}>
@@ -53,9 +60,10 @@ export default function InsightMessage({
           <div className={styles.infoCard}>
             <div className={styles.infoCardLeft}>
               <Image
+                priority
                 className={styles.icon}
                 src={infoCard.iconUrl}
-                alt="Account Icon"
+                alt="accountIcon"
                 width={50}
                 height={50}
               />
@@ -80,7 +88,7 @@ export default function InsightMessage({
           <Image
             className={styles.insightBird}
             src={`/resources/bird-images/${birdColour}.png`}
-            alt="Insight bird"
+            alt="insightBird"
             width={342}
             height={183}
           />
