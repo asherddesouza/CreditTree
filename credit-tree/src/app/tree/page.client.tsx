@@ -23,6 +23,7 @@ import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import Image from "next/image";
 import Link from "next/link";
+import InsightMessage from "@/components/insight-message/page";
 
 export default function CreditTree() {
   return (
@@ -47,6 +48,26 @@ export default function CreditTree() {
               />
             </button>
           </Link>
+
+          <>
+            <InsightMessage
+              title="Your credit limit has increased!"
+              date="May 2025"
+              numberChange={{
+                from: "£300",
+                to: "£800",
+                sentiment: "positive",
+              }}
+              infoCard={{
+                iconUrl: "/resources/credit-card.png",
+                name: "Capital One",
+                number: "0645 4534 4354 0543",
+                type: "Credit Card",
+              }}
+              description="Keep it up!"
+              birdColour="pink"
+            />
+          </>
         </Html>
 
         <Perf position="top-left" />
