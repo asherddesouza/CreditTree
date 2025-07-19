@@ -1,0 +1,120 @@
+.insightMessageContainer {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 40%;
+  user-select: none;
+}
+
+.insightMessage {
+  padding: 30px;
+  border: 2px solid #eeeeee;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 85%;
+}
+
+.closeButtonContainer {
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: -3rem;
+  right: -3rem;
+  cursor: pointer;
+  border: 1px solid #912424;
+  background-color: #c30000;
+  padding: 10px 12.5px;
+  border-radius: 50%;
+  color: #ffffff;
+}
+
+.closeButton:hover {
+  background-color: #912424;
+  color: #ffffff;
+}
+
+.topInfoContainer {
+  display: flex;
+  font-weight: 900;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.externalCta {
+  padding: 5px 10px;
+  color: #ffffff;
+  background-color: #495853;
+  border: 2px solid #495853;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.externalCta:hover {
+  background-color: #618378;
+  border-color: #618378;
+  cursor: pointer;
+}
+
+.description {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.insightBirdContainer {
+  position: relative;
+  user-select: none;
+}
+
+.insightBird {
+  transform: scaleX(-1) scale(0.6);
+  position: absolute;
+  bottom: -7rem;
+  right: -9rem;
+}
+
+.infoCard {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 25px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.infoCardLeft {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoCardText {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px;
+  gap: 5px;
+}
+
+.numberChangeCard {
+  display: flex;
+  align-items: center;
+  margin: 15px 0px;
+  font-size: 50px;
+  font-weight: bolder;
+  gap: 10px;
+}
+
+.greenArrow {
+  color: #618378;
+}
+
+.redArrow {
+  color: #912424;
+}

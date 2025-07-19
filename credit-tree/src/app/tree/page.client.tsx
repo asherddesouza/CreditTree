@@ -23,6 +23,7 @@ import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import Image from "next/image";
 import Link from "next/link";
+import InsightMessage from "@/components/insight-message/page";
 
 export default function CreditTree() {
   return (
@@ -47,6 +48,26 @@ export default function CreditTree() {
               />
             </button>
           </Link>
+
+          <>
+            <InsightMessage
+              title="New Account Added"
+              date="April 2023"
+              numberChange={{
+                from: "£300",
+                to: "£800",
+                sentiment: "positive",
+              }}
+              infoCard={{
+                iconUrl: "/resources/profile.png",
+                name: "John Doe",
+                number: "42503523950352",
+                type: "Current Account",
+              }}
+              description="A new account was added to your report!"
+              birdColour="blue"
+            />
+          </>
         </Html>
 
         <Perf position="top-left" />
