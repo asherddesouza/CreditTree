@@ -51,21 +51,21 @@ export default function CreditTree() {
 
           <>
             <InsightMessage
-              title="New Account Added"
-              date="April 2023"
+              title="Your credit limit has increased!"
+              date="May 2025"
               numberChange={{
                 from: "£300",
                 to: "£800",
                 sentiment: "positive",
               }}
               infoCard={{
-                iconUrl: "/resources/profile.png",
-                name: "John Doe",
-                number: "42503523950352",
-                type: "Current Account",
+                iconUrl: "/resources/credit-card.png",
+                name: "Capital One",
+                number: "0645 4534 4354 0543",
+                type: "Credit Card",
               }}
-              description="A new account was added to your report!"
-              birdColour="blue"
+              description="Keep it up!"
+              birdColour="pink"
             />
           </>
         </Html>

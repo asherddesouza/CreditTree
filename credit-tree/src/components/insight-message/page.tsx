@@ -65,7 +65,7 @@ export default function InsightMessage({
               </div>
             </div>
 
-            <div className={styles.type}>Current Account</div>
+            <div className={styles.type}>{infoCard.type}</div>
           </div>
         )}
 
