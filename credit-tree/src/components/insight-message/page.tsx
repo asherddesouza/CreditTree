@@ -1,5 +1,6 @@
 import CourtOrdersV1Insights from "@/utils/insights-generator/src/creditreport-court-orders-v1-insights";
 import ElectoralRollV1Insights from "@/utils/insights-generator/src/creditreport-electoral-roll-v1-insights";
+import FraudWarningsV1Insights from "@/utils/insights-generator/src/creditreport-fraud-warnings-v1-insights";
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,7 +90,7 @@ export default function InsightMessage({
         <button
           className={styles.externalCta}
           onClick={() => {
-            ElectoralRollV1Insights("92092d0c-08a0-41a7-952d-3a2e853cb431");
+            FraudWarningsV1Insights("92092d0c-08a0-41a7-952d-3a2e853cb431");
           }}
         >
           Generate Insights
