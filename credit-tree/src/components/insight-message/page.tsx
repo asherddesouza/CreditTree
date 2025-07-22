@@ -1,3 +1,4 @@
+import CourtOrdersV1Insights from "@/utils/insights-generator/src/creditreport-court-orders-v1-insights";
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -84,6 +85,14 @@ export default function InsightMessage({
         >
           See more info on ClearScore
         </Link>
+        <button
+          className={styles.externalCta}
+          onClick={() => {
+            CourtOrdersV1Insights("92092d0c-08a0-41a7-952d-3a2e853cb431");
+          }}
+        >
+          Generate Insights
+        </button>
         <div className={styles.insightBirdContainer}>
           <Image
             className={styles.insightBird}
