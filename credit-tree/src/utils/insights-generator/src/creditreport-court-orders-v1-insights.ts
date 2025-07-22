@@ -8,6 +8,14 @@ interface CourtOrdersInsight {
   title: string;
   date: string;
   description: string;
+  birdColour?:
+    | "green"
+    | "red"
+    | "blue"
+    | "yellow"
+    | "purple"
+    | "pink"
+    | "black";
 }
 
 interface CourtOrdersJson {
@@ -53,6 +61,7 @@ export default async function CourtOrdersV1Insights(uuid: string) {
           "Date Unavailable",
         description:
           "You have no court orders on your credit report. This is a positive indicator of your overall credit health.",
+        birdColour: "blue",
       };
 
       courtOrdersInsights.push(noCourtOrdersInsight);
@@ -67,12 +76,12 @@ export default async function CourtOrdersV1Insights(uuid: string) {
         description: `You have ${courtOrdersCount} court ${
           courtOrdersCount === 1 ? "order" : "orders"
         } on your credit report.`,
+        birdColour: "blue",
       };
 
       courtOrdersInsights.push(someCourtOrdersInsight);
     }
 
-    console.log(courtOrdersInsights);
     return courtOrdersInsights;
   } catch (error) {
     console.error("Error generating Court Orders V1 insights:", error);

@@ -35,7 +35,7 @@ export async function generateJsonData(uuid: string) {
       reportId: "40557458",
       userUuid: uuid,
       reportTimestamp: 1675743385435,
-      electoralRollData: null,
+      electoralRollData: [],
     },
     onElectoralRoll: {
       bureau: "EQUIFAX",
