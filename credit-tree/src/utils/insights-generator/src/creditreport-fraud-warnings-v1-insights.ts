@@ -81,8 +81,6 @@ export default async function FraudWarningsV1Insights(uuid: string) {
       fraudWarningsInsights.push(someFraudWarningsInsight);
     }
 
-    console.log("Fraud Warnings Insights:", fraudWarningsInsights);
-
     return fraudWarningsInsights;
   } catch (error) {
     console.error("Error generating Fraud Warnings V1 insights:", error);
