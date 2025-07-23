@@ -2,7 +2,7 @@
 
 import prisma from "../../../../libs/prisma";
 
-import UnixToMonthAndYear from "@/utils/unix-conversion";
+import { UnixToMonthAndYear } from "@/utils/date-conversion";
 
 interface FraudWarningsInsight {
   title: string;
