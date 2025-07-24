@@ -51,20 +51,8 @@ export default async function InsolvenciesV1Insights(uuid: string) {
 
     if (
       !insolvenciesResponse?.insolvencies ||
-      insolvenciesResponse?.insolvencies.length === 0
+      insolvenciesResponse?.insolvencies.length !== 0
     ) {
-      const noInsolvenciesInsight: InsolvenciesInsight = {
-        title: "No Insolvencies",
-        date:
-          UnixToMonthAndYear(insolvenciesResponse?.reportTimestamp) ||
-          "Date Unavailable",
-        description:
-          "You have no insolvencies on your credit report. This is a positive indicator of your overall credit health.",
-        birdColour: "blue",
-      };
-
-      insolvenciesInsights.push(noInsolvenciesInsight);
-    } else {
       const insolvenciesCount = insolvenciesResponse.insolvencies.length;
 
       const someInsolvenciesInsight: InsolvenciesInsight = {

@@ -11,7 +11,7 @@ export async function generateJsonData(uuid: string) {
       market: "UK",
       reportId: "41308967",
       userUuid: uuid,
-      insolvencies: null,
+      insolvencies: [],
       reportTimestamp: 1676868983658,
     },
     oneInsolvency: {

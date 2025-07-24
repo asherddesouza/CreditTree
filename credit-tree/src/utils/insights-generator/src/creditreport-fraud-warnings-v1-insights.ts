@@ -51,20 +51,8 @@ export default async function FraudWarningsV1Insights(uuid: string) {
 
     if (
       !fraudWarningsResponse?.fraudWarnings ||
-      fraudWarningsResponse?.fraudWarnings.length === 0
+      fraudWarningsResponse?.fraudWarnings.length !== 0
     ) {
-      const noFraudWarningsInsight: FraudWarningsInsight = {
-        title: "No Fraud Warnings",
-        date:
-          UnixToMonthAndYear(fraudWarningsResponse?.reportTimestamp) ||
-          "Date Unavailable",
-        description:
-          "You have no fraud warnings on your credit report. This is a positive indicator of your overall credit health.",
-        birdColour: "blue",
-      };
-
-      fraudWarningsInsights.push(noFraudWarningsInsight);
-    } else {
       const fraudWarningsCount = fraudWarningsResponse.fraudWarnings.length;
 
       const someFraudWarningsInsight: FraudWarningsInsight = {

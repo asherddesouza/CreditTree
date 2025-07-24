@@ -52,20 +52,8 @@ export default async function CourtOrdersV1Insights(uuid: string) {
 
     if (
       !courtOrdersResponse?.courtOrders ||
-      courtOrdersResponse?.courtOrders.length === 0
+      courtOrdersResponse?.courtOrders.length !== 0
     ) {
-      const noCourtOrdersInsight: CourtOrdersInsight = {
-        title: "No Court Orders",
-        date:
-          UnixToMonthAndYear(courtOrdersResponse?.reportTimestamp) ||
-          "Date Unavailable",
-        description:
-          "You have no court orders on your credit report. This is a positive indicator of your overall credit health.",
-        birdColour: "blue",
-      };
-
-      courtOrdersInsights.push(noCourtOrdersInsight);
-    } else {
       const courtOrdersCount = courtOrdersResponse.courtOrders.length;
 
       const someCourtOrdersInsight: CourtOrdersInsight = {
