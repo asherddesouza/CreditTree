@@ -5,7 +5,7 @@ import prisma from "../../../../libs/__mocks__/prisma";
 
 vi.mock("../../../../libs/prisma.ts");
 
-describe("AddressesV1Seeder Tests", () => {
+describe("CourtOrdersV1Seeder Tests", () => {
   it("should correctly seed the CourtOrdersV1 table", async () => {
     const uuid = "3d26ef72-e03b-4261-b661-72e46f909006";
     const jsonData = await generateJsonData(uuid);

@@ -1,3 +1,10 @@
+import CourtOrdersV1Insights from "@/utils/insights-generator/src/creditreport-court-orders-v1-insights";
+import ElectoralRollV1Insights from "@/utils/insights-generator/src/creditreport-electoral-roll-v1-insights";
+import FraudWarningsV1Insights from "@/utils/insights-generator/src/creditreport-fraud-warnings-v1-insights";
+import InsolvenciesV1Insights from "@/utils/insights-generator/src/creditreport-insolvencies-v1-insights";
+import MonthlyScoresV1Insights from "@/utils/insights-generator/src/creditreport-monthly-scores-v1-insights";
+import RankedInsightsByMonthV1Insights from "@/utils/insights-generator/src/creditreport-ranked-insights-by-month-v1-insights";
+
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +20,7 @@ interface InsightMessageProps {
   infoCard?: {
     iconUrl: string;
     name: string;
-    number: string;
+    number?: string;
     type: string;
   };
   description: string;
@@ -69,7 +76,9 @@ export default function InsightMessage({
               />
               <div className={styles.infoCardText}>
                 <div className={styles.name}>{infoCard.name}</div>
-                <div className={styles.number}>{infoCard.number}</div>
+                {infoCard.number ? (
+                  <div className={styles.number}>{infoCard.number}</div>
+                ) : null}
               </div>
             </div>
 
@@ -84,6 +93,16 @@ export default function InsightMessage({
         >
           See more info on ClearScore
         </Link>
+        <button
+          className={styles.externalCta}
+          onClick={() => {
+            RankedInsightsByMonthV1Insights(
+              "0e4fc365-9704-4430-8b98-24b49ba8bdb9"
+            );
+          }}
+        >
+          Generate Insights
+        </button>
         <div className={styles.insightBirdContainer}>
           <Image
             className={styles.insightBird}

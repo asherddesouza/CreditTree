@@ -11,7 +11,7 @@ export async function generateJsonData(uuid: string) {
       market: "UK",
       reportId: "40354758",
       userUuid: uuid,
-      fraudWarnings: null,
+      fraudWarnings: [],
       reportTimestamp: 1675229403342,
     },
     oneFraudCase: {
