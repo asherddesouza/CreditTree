@@ -16,6 +16,7 @@ export default async function Scene() {
   // console.log("User data:", data.user);
 
   const insights = await generateInsights(data.user.id);
+  console.log("Generated Insights:", insights);
 
   return <CreditTree />;
 }

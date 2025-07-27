@@ -23,7 +23,5 @@ export default async function generateInsights(uuid: string) {
     await PaymentHistoryV1Insights(uuid)
   );
 
-  console.log(generatedInsights);
-
   return generatedInsights;
 }
