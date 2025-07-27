@@ -69,15 +69,10 @@ export function MonthlyScoresToInsightDate(scoreData: ScoreData) {
   }
 }
 
-// Converts an Excel-style serial date (days since 1900-01-01) to "MM YYYY"
-export function SerialDayToMonthAndYear(serialDay: number) {
-  // Excel epoch is Jan 1, 1900, but Excel incorrectly treats 1900 as a leap year, so subtract 2 days
-  const excelEpoch = new Date(Date.UTC(1900, 0, 1));
-  const msPerDay = 24 * 60 * 60 * 1000;
-  const date = new Date(excelEpoch.getTime() + (serialDay - 2) * msPerDay);
-
-  const month = (date.getUTCMonth() + 1).toString().padStart(2, "0"); // getUTCMonth is 0-based
+export function ISODateToMonthAndYear(isoDate: string) {
+  const date = new Date(isoDate);
   const year = date.getUTCFullYear();
+  const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
 
   switch (month) {
     case "01":

@@ -56,7 +56,7 @@ export default async function MonthlyScoresV1Insights(uuid: string) {
 
     const currentScoreData = monthlyScoresResponse.scores[0] || null;
 
-    if (monthlyScoresResponse.scores.length === 0) {
+    if (currentScoreData.score === null) {
       const noMonthlyScoresInsight: MonthlyScoresInsight = {
         title: "Credit Score not found",
         date:
@@ -99,8 +99,6 @@ export default async function MonthlyScoresV1Insights(uuid: string) {
 
       monthlyScoresInsights.push(monthlyScoreDecreasedInsight);
     }
-
-    console.log("Monthly Scores Insights:", monthlyScoresInsights);
 
     return monthlyScoresInsights;
   } catch (error) {

@@ -1,4 +1,4 @@
-import UnixToMonthAndYear from "@/utils/date-conversion";
+import { UnixToMonthAndYear } from "@/utils/date-conversion";
 
 describe("Test UnixToMonthAndYear", () => {
   it("should convert Unix timestamp to Month and Year", () => {

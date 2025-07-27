@@ -2,7 +2,7 @@
 
 import prisma from "../../../../libs/prisma";
 
-import { SerialDayToMonthAndYear } from "@/utils/date-conversion";
+import { ISODateToMonthAndYear } from "@/utils/date-conversion";
 
 interface RankedInsightsByMonthInsight {
   title: string;
@@ -25,7 +25,7 @@ interface RankedInsightsByMonthInsight {
 }
 
 interface RankedInsightsByMonthJson {
-  month: number;
+  month: string;
   userUuid: string;
   rankedInsights: any[];
 }
@@ -75,27 +75,83 @@ export default async function RankedInsightsByMonthV1Insights(uuid: string) {
           "hard-search-added"
         ) !== "Insight not found"
       ) {
-        const hardSearchAddedInsight = findInsightByType(
+        const hardSearchAdded = findInsightByType(
           rankedInsightsByMonthResponse?.rankedInsights,
           "hard-search-added"
         );
 
-        const someRankedInsightsByMonthInsight: RankedInsightsByMonthInsight = {
+        const hardSearchAddedInsight: RankedInsightsByMonthInsight = {
           title: "You have a new hard search on your report!",
           date:
-            SerialDayToMonthAndYear(rankedInsightsByMonthResponse?.month) ||
+            ISODateToMonthAndYear(rankedInsightsByMonthResponse?.month) ||
             "Date Unavailable",
           description:
             "A hard search typically stays on your credit report for up to 12 months. However, even though they are visible to lenders for a year, the impact on your score is most significant shortly after the check.",
           infoCard: {
             iconUrl: "/resources/documents.png",
-            name: `${hardSearchAddedInsight?.details?.change?.clientName}`,
+            name: `${hardSearchAdded?.details?.change?.clientName}`,
             type: "Hard Search",
           },
           birdColour: "yellow",
         };
 
-        rankedInsightsByMonthInsights.push(someRankedInsightsByMonthInsight);
+        rankedInsightsByMonthInsights.push(hardSearchAddedInsight);
+      }
+
+      if (
+        findInsightByType(
+          rankedInsightsByMonthResponse?.rankedInsights,
+          "password-breach"
+        ) !== "Insight not found"
+      ) {
+        const passwordBreachAdded = findInsightByType(
+          rankedInsightsByMonthResponse?.rankedInsights,
+          "password-breach"
+        );
+
+        const passwordBreachAddedInsight: RankedInsightsByMonthInsight = {
+          title: "You have a new password breach on your report!",
+          date:
+            ISODateToMonthAndYear(rankedInsightsByMonthResponse?.month) ||
+            "Date Unavailable",
+          description: `A password from ${passwordBreachAdded?.details?.details?.breachDomains} has been found in a data breach. Change your password immediately to protect your account.`,
+          infoCard: {
+            iconUrl: "/resources/documents.png",
+            name: `${passwordBreachAdded?.details?.details?.maskedPassword}`,
+            type: "Password Breach",
+          },
+          birdColour: "purple",
+        };
+
+        rankedInsightsByMonthInsights.push(passwordBreachAddedInsight);
+      }
+
+      if (
+        findInsightByType(
+          rankedInsightsByMonthResponse?.rankedInsights,
+          "email-data-breach"
+        ) !== "Insight not found"
+      ) {
+        const emailDataBreachAdded = findInsightByType(
+          rankedInsightsByMonthResponse?.rankedInsights,
+          "email-data-breach"
+        );
+
+        const emailDataBreachAddedInsight: RankedInsightsByMonthInsight = {
+          title: "You have a new email data breach on your report!",
+          date:
+            ISODateToMonthAndYear(rankedInsightsByMonthResponse?.month) ||
+            "Date Unavailable",
+          description: `An email from ${emailDataBreachAdded?.details?.details?.title} has been found in a data breach. Change your email immediately to protect your account.`,
+          infoCard: {
+            iconUrl: "/resources/documents.png",
+            name: `${emailDataBreachAdded?.details?.details?.email}`,
+            type: "Email Data Breach",
+          },
+          birdColour: "purple",
+        };
+
+        rankedInsightsByMonthInsights.push(emailDataBreachAddedInsight);
       }
     }
 

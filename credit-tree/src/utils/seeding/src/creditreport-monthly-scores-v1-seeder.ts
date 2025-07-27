@@ -17,7 +17,7 @@ export async function generateJsonData(uuid: string) {
       label: "PSOLF01",
       bureau: "EQUIFAX",
       market: "UK",
-      scores: [],
+      scores: [{ year: 2025, month: 7, score: null, change: null }],
       maxScore: 1000,
       userUuid: uuid,
     },
