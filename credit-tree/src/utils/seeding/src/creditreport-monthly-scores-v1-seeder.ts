@@ -1,6 +1,5 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server";
 import prisma from "../../../../libs/prisma";
 
 type ScenarioKey =

@@ -69,8 +69,6 @@ export default async function InsolvenciesV1Insights(uuid: string) {
       insolvenciesInsights.push(someInsolvenciesInsight);
     }
 
-    console.log("Insolvencies Insights:", insolvenciesInsights);
-
     return insolvenciesInsights;
   } catch (error) {
     console.error("Error generating Insolvencies V1 insights:", error);
