@@ -24,16 +24,84 @@ import * as THREE from "three";
 import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
+import { InsightMessageProps } from "@/components/insight-message/page";
 
-export default function CreditTree() {
+interface TreeProps {
+  creditScore: number;
+  insights: any[];
+}
+
+interface CameraSettingsProps {
+  fov: number;
+  near: number;
+  far: number;
+  position: [number, number, number];
+}
+
+export function TreeStage(creditScore: number): number {
+  if (creditScore <= 200) {
+    return 1;
+  } else if (creditScore <= 400) {
+    return 2;
+  } else if (creditScore <= 600) {
+    return 3;
+  } else if (creditScore <= 800) {
+    return 4;
+  } else {
+    return 5;
+  }
+}
+
+export function CameraSettings(creditScore: number): CameraSettingsProps {
+  if (creditScore <= 200) {
+    return {
+      fov: 45,
+      near: 0.1,
+      far: 400,
+      position: [-30, 0, 20],
+    };
+  } else if (creditScore <= 400) {
+    return {
+      fov: 45,
+      near: 0.1,
+      far: 400,
+      position: [-30, 0, 20],
+    };
+  } else if (creditScore <= 600) {
+    return {
+      fov: 45,
+      near: 0.1,
+      far: 400,
+      position: [-30, 0, 30],
+    };
+  } else if (creditScore <= 800) {
+    return {
+      fov: 45,
+      near: 0.1,
+      far: 400,
+      position: [-30, 60, 160],
+    };
+  } else
+    return {
+      fov: 45,
+      near: 0.1,
+      far: 400,
+      position: [-30, 80, 250],
+    };
+}
+
+export default function CreditTree({ creditScore, insights }: TreeProps) {
+  let treeStage = TreeStage(creditScore);
+  let cameraSettings = CameraSettings(creditScore);
+
   return (
     <>
       <Canvas
         camera={{
-          fov: 45,
-          near: 0.1,
-          far: 400,
-          position: [-30, 0, 20],
+          fov: cameraSettings.fov,
+          near: cameraSettings.near,
+          far: cameraSettings.far,
+          position: cameraSettings.position,
         }}
       >
         <Html fullscreen>
@@ -49,7 +117,7 @@ export default function CreditTree() {
             </button>
           </Link>
 
-          <>
+          {/* <>
             <InsightMessage
               title="Your credit limit has increased!"
               date="May 2025"
@@ -67,7 +135,7 @@ export default function CreditTree() {
               description="Keep it up!"
               birdColour="pink"
             />
-          </>
+          </> */}
         </Html>
 
         <Perf position="top-left" />
@@ -82,9 +150,9 @@ export default function CreditTree() {
         />
 
         {/* <Clouds material={THREE.MeshBasicMaterial}>
-        <Cloud segments={40} bounds={[10, 2, 2]} volume={10} color="orange" />
-        <Cloud seed={1} scale={2} volume={5} color="hotpink" fade={100} />
-      </Clouds> */}
+          <Cloud segments={40} bounds={[10, 2, 2]} volume={10} color="orange" />
+          <Cloud seed={1} scale={2} volume={5} color="hotpink" fade={100} />
+        </Clouds> */}
 
         <OrbitControls
           makeDefault
@@ -98,11 +166,11 @@ export default function CreditTree() {
 
         {/* <InsightBird birdType={"green"} /> */}
 
-        <TreeStage1 />
-        {/* <TreeStage2 /> */}
-        {/* <TreeStage3 /> */}
-        {/* <TreeStage4 /> */}
-        {/* <TreeStage5 /> */}
+        {treeStage === 1 ? <TreeStage1 /> : null}
+        {treeStage === 2 ? <TreeStage2 /> : null}
+        {treeStage === 3 ? <TreeStage3 /> : null}
+        {treeStage === 4 ? <TreeStage4 /> : null}
+        {treeStage === 5 ? <TreeStage5 /> : null}
 
         <Globe />
       </Canvas>

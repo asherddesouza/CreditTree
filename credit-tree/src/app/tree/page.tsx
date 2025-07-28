@@ -4,6 +4,21 @@ import CreditTree from "./page.client";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import generateInsights from "@/utils/insights-generator/src/generate-insights";
+import prisma from "../../../libs/prisma";
+
+// interface MonthlyScoresResponse {
+//   bureau: string;
+//   label: string;
+//   market: string;
+//   maxScore: number;
+//   scores: {
+//     year: number;
+//     month: number;
+//     score: number | null;
+//     change: number | null;
+//   }[];
+//   userUuid: string;
+// }
 
 export default async function Scene() {
   const supabase = await createClient();
@@ -13,10 +28,24 @@ export default async function Scene() {
     redirect("/login");
   }
 
-  // console.log("User data:", data.user);
+  const monthlyScoresResponse =
+    await prisma.creditreport_monthly_scores_v1.findFirst({
+      where: { id: data.user.id },
+    });
+
+  let creditScore;
+  if (monthlyScoresResponse?.json) {
+    const jsonObj =
+      typeof monthlyScoresResponse.json === "string"
+        ? JSON.parse(monthlyScoresResponse.json)
+        : monthlyScoresResponse.json;
+    creditScore = jsonObj?.scores?.[0]?.score;
+  }
+
+  console.log("Monthly Scores Data:", creditScore);
 
   const insights = await generateInsights(data.user.id);
   console.log("Generated Insights:", insights);
 
-  return <CreditTree />;
+  return <CreditTree creditScore={1000} insights={insights} />;
 }

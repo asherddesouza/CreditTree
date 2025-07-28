@@ -9,7 +9,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-interface InsightMessageProps {
+export interface InsightMessageProps {
   title: string;
   date: string;
   numberChange?: {
