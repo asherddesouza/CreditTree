@@ -63,7 +63,7 @@ export default async function InsolvenciesV1Insights(uuid: string) {
         description: `You have ${insolvenciesCount} insolvenc${
           insolvenciesCount === 1 ? "y" : "ies"
         } on your credit report. This will stay on your credit report for 6 years and can significantly impact your credit score.`,
-        birdColour: "blue",
+        birdColour: "purple",
       };
 
       insolvenciesInsights.push(someInsolvenciesInsight);

@@ -25,6 +25,7 @@ import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
+import { useState } from "react";
 
 interface TreeProps {
   creditScore: number;
@@ -90,9 +91,71 @@ export function CameraSettings(creditScore: number): CameraSettingsProps {
     };
 }
 
+export function BirdScale(creditScore: number): number {
+  if (creditScore <= 200) {
+    return 0.8;
+  } else if (creditScore <= 400) {
+    return 1;
+  } else if (creditScore <= 600) {
+    return 1.2;
+  } else if (creditScore <= 800) {
+    return 2.5;
+  } else {
+    return 3;
+  }
+}
+
 export default function CreditTree({ creditScore, insights }: TreeProps) {
   let treeStage = TreeStage(creditScore);
   let cameraSettings = CameraSettings(creditScore);
+  let birdScale = BirdScale(creditScore);
+
+  const [selectedInsight, setSelectedInsight] =
+    useState<InsightMessageProps | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // then, make them move around the tree
+  // then, add the clouds things so that we know if an insight has been clicked or not
+  // then, add onClicks to the birds which display modals
+  // once an insight is dismissed, remove the clouds
+
+  function handleBirdClicked(insight: InsightMessageProps) {
+    setSelectedInsight(insight);
+    setModalVisible(true);
+  }
+
+  const insightBirds = insights.map((insight, index) => {
+    return (
+      <mesh
+        position={[10, index * 3, 0]}
+        key={index}
+        scale={birdScale}
+        onClick={() => handleBirdClicked(insight)}
+      >
+        <InsightBird insight={insight} />
+      </mesh>
+    );
+  });
+
+  const showInsightModal = (insight: InsightMessageProps | null) => {
+    if (insight !== null) {
+      return (
+        <Html fullscreen>
+          <InsightMessage
+            title={insight.title}
+            date={insight.date}
+            numberChange={insight.numberChange}
+            infoCard={insight.infoCard}
+            description={insight.description}
+            birdColour={insight.birdColour}
+            setModalVisible={setModalVisible}
+            modalVisible={modalVisible}
+          />
+        </Html>
+      );
+    }
+    return null;
+  };
 
   return (
     <>
@@ -138,6 +201,8 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
           </> */}
         </Html>
 
+        {modalVisible && showInsightModal(selectedInsight)}
+
         <Perf position="top-left" />
 
         <EffectComposer>
@@ -164,7 +229,7 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
         <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
         <ambientLight intensity={4} />
 
-        {/* <InsightBird birdType={"green"} /> */}
+        {insightBirds}
 
         {treeStage === 1 ? <TreeStage1 /> : null}
         {treeStage === 2 ? <TreeStage2 /> : null}

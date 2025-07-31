@@ -109,7 +109,7 @@ describe("CourtOrdersV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "purple",
         date: "May 2023",
         description: "You have 1 court order on your credit report.",
         title: "Court Orders Found",
@@ -126,7 +126,7 @@ describe("CourtOrdersV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "purple",
         date: "May 2023",
         description: "You have 2 court orders on your credit report.",
         title: "Court Orders Found",

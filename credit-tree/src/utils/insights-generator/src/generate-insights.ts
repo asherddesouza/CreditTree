@@ -12,16 +12,23 @@ import PaymentHistoryV1Insights from "./creditreport-payment-history-overview-v1
 export default async function generateInsights(uuid: string) {
   let generatedInsights = [];
 
-  generatedInsights.push(
-    await CourtOrdersV1Insights(uuid),
-    await ElectoralRollV1Insights(uuid),
-    await FraudWarningsV1Insights(uuid),
-    await InsolvenciesV1Insights(uuid),
-    await MonthlyScoresV1Insights(uuid),
-    await NoticesV1Insights(uuid),
-    await RankedInsightsByMonthV1Insights(uuid),
-    await PaymentHistoryV1Insights(uuid)
-  );
+  const insightFunctions = [
+    CourtOrdersV1Insights,
+    ElectoralRollV1Insights,
+    FraudWarningsV1Insights,
+    InsolvenciesV1Insights,
+    MonthlyScoresV1Insights,
+    NoticesV1Insights,
+    RankedInsightsByMonthV1Insights,
+    PaymentHistoryV1Insights,
+  ];
+
+  for (const fn of insightFunctions) {
+    const result = await fn(uuid);
+    if (Array.isArray(result) && result.length > 0) {
+      generatedInsights.push(...result);
+    }
+  }
 
   return generatedInsights;
 }

@@ -6,20 +6,6 @@ import { createClient } from "@/utils/supabase/server";
 import generateInsights from "@/utils/insights-generator/src/generate-insights";
 import prisma from "../../../libs/prisma";
 
-// interface MonthlyScoresResponse {
-//   bureau: string;
-//   label: string;
-//   market: string;
-//   maxScore: number;
-//   scores: {
-//     year: number;
-//     month: number;
-//     score: number | null;
-//     change: number | null;
-//   }[];
-//   userUuid: string;
-// }
-
 export default async function Scene() {
   const supabase = await createClient();
 
@@ -47,5 +33,5 @@ export default async function Scene() {
   const insights = await generateInsights(data.user.id);
   console.log("Generated Insights:", insights);
 
-  return <CreditTree creditScore={1000} insights={insights} />;
+  return <CreditTree creditScore={100} insights={insights} />;
 }

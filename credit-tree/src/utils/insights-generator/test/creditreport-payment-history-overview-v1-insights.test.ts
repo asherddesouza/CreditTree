@@ -153,7 +153,7 @@ describe("PaymentHistoryOverviewV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "black",
         date: "Jul 2025",
         description:
           "You have no missed payments on your credit report. Keep it up!",
@@ -175,7 +175,7 @@ describe("PaymentHistoryOverviewV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "black",
         date: "Jul 2025",
         description:
           "You have 3 missed payments on your credit report. This can negatively impact your credit score and overall credit health.",
@@ -197,7 +197,7 @@ describe("PaymentHistoryOverviewV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "black",
         date: "Jul 2025",
         description:
           "You have no payment history data on your credit report. This means that we're unable to provide insights into your payment behavior.",

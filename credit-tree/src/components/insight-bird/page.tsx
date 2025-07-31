@@ -14,13 +14,30 @@ enum BirdColours {
 }
 
 interface InsightBirdProps {
-  birdType: string;
+  insight: {
+    birdColour: string;
+    title: string;
+    date: string;
+    numberChange?: {
+      from: string;
+      to: string;
+      sentiment: "positive" | "negative";
+    };
+    infoCard?: {
+      iconUrl: string;
+      name: string;
+      number?: string;
+      type: string;
+    };
+    description: string;
+  };
 }
 
-export default function InsightBird({ birdType }: InsightBirdProps) {
+export default function InsightBird({ insight }: InsightBirdProps) {
   const birdRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
 
+  const birdType = insight.birdColour;
   let birdColor: string;
 
   if (birdType === "black") {
@@ -41,15 +58,11 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
     birdColor = BirdColours.RED; // default color if no match
   }
 
-  // todo
-  // create a prop to be passed to the component to control the type of bird that's rendered
-  // based on this, change the colour and have different hairs for each bird type
-
   useCursor(hovered, "pointer");
 
-  // useFrame((state, delta) => {
-  //   birdRef.current ? (birdRef.current.rotation.y -= delta * 0.5) : null;
-  // });
+  useFrame((state, delta) => {
+    birdRef.current ? (birdRef.current.rotation.y -= delta * 0.5) : null;
+  });
 
   return (
     <>
@@ -57,8 +70,7 @@ export default function InsightBird({ birdType }: InsightBirdProps) {
         ref={birdRef}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
-        scale={3}
-        // position-z={4}
+        scale={2}
       >
         <group>
           <mesh rotation={[0, Math.PI / 2, 0]} position-x={0.5} receiveShadow>
