@@ -105,16 +105,46 @@ export function BirdScale(creditScore: number): number {
   }
 }
 
+export function BirdYPositionRange(creditScore: number): number {
+  if (creditScore <= 200) {
+    return Math.random() * (2 - 1) + 1;
+  } else if (creditScore <= 400) {
+    return Math.random() * (2 - 1) + 1;
+  } else if (creditScore <= 600) {
+    return Math.random() * (3 - 1) + 1;
+  } else if (creditScore <= 800) {
+    return Math.random() * (9 - 8) + 8;
+  } else {
+    return Math.random() * (15 - 10) + 10;
+  }
+}
+
+export function BirdMinDistance(creditScore: number): number {
+  if (creditScore <= 200) {
+    return 3;
+  } else if (creditScore <= 400) {
+    return 3.5;
+  } else if (creditScore <= 600) {
+    return 4;
+  } else if (creditScore <= 800) {
+    return 12;
+  } else {
+    return 20;
+  }
+}
+
 export default function CreditTree({ creditScore, insights }: TreeProps) {
   let treeStage = TreeStage(creditScore);
   let cameraSettings = CameraSettings(creditScore);
   let birdScale = BirdScale(creditScore);
+  let birdYDistance = BirdYPositionRange(creditScore);
+  const minDistance = BirdMinDistance(creditScore);
+  const radius = minDistance;
 
   const [selectedInsight, setSelectedInsight] =
     useState<InsightMessageProps | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
-  // then, make them move around the tree
   // then, add the clouds things so that we know if an insight has been clicked or not
   // then, add onClicks to the birds which display modals
   // once an insight is dismissed, remove the clouds
@@ -125,12 +155,22 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
   }
 
   const insightBirds = insights.map((insight, index) => {
+    const angle = (index / insights.length) * 2 * Math.PI;
+    const x =
+      Math.cos(angle) * radius + Math.sign(Math.cos(angle)) * minDistance;
+    const z =
+      Math.sin(angle) * radius + Math.sign(Math.sin(angle)) * minDistance;
+
     return (
       <mesh
-        position={[10, index * 3, 0]}
+        position={[x, index * birdYDistance, z]}
+        rotation-y={Math.random() * Math.PI * 2}
         key={index}
         scale={birdScale}
-        onClick={() => handleBirdClicked(insight)}
+        onClick={(event) => {
+          event.stopPropagation();
+          handleBirdClicked(insight);
+        }}
       >
         <InsightBird insight={insight} />
       </mesh>

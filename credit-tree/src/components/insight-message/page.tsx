@@ -32,10 +32,6 @@ export interface InsightMessageProps {
   modalVisible: boolean;
 }
 
-// export function showInsightMessage() {
-//   setModalVisible(true);
-// }
-
 export default function InsightMessage({
   title,
   date,

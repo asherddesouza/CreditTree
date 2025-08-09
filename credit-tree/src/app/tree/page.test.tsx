@@ -1,4 +1,10 @@
-import { TreeStage, CameraSettings } from "./page.client";
+import {
+  TreeStage,
+  CameraSettings,
+  BirdScale,
+  BirdYPositionRange,
+  BirdMinDistance,
+} from "./page.client";
 
 describe("TreeStage works correctly", () => {
   it("returns correct stage for credit score 97", () => {
@@ -77,5 +83,86 @@ describe("CameraSettings works correctly", () => {
       far: 400,
       position: [-30, 80, 250],
     });
+  });
+});
+
+describe("BirdScale works correctly", () => {
+  it("returns correct scale for credit score 97", () => {
+    expect(BirdScale(97)).toBe(0.8);
+  });
+
+  it("returns correct scale for credit score 335", () => {
+    expect(BirdScale(335)).toBe(1);
+  });
+
+  it("returns correct scale for credit score 555", () => {
+    expect(BirdScale(555)).toBe(1.2);
+  });
+
+  it("returns correct scale for credit score 615", () => {
+    expect(BirdScale(615)).toBe(2.5);
+  });
+
+  it("returns correct scale for credit score 931", () => {
+    expect(BirdScale(931)).toBe(3);
+  });
+  it("returns correct scale for an out of bounds number", () => {
+    expect(BirdScale(9999)).toBe(3);
+  });
+});
+
+describe("BirdYPositionRange works correctly", () => {
+  it("returns correct position for credit score 97", () => {
+    expect(BirdYPositionRange(97)).toBeLessThanOrEqual(2);
+    expect(BirdYPositionRange(97)).toBeGreaterThanOrEqual(1);
+  });
+
+  it("returns correct position for credit score 335", () => {
+    expect(BirdYPositionRange(335)).toBeLessThanOrEqual(2);
+    expect(BirdYPositionRange(335)).toBeGreaterThanOrEqual(1);
+  });
+
+  it("returns correct position for credit score 555", () => {
+    expect(BirdYPositionRange(555)).toBeLessThanOrEqual(3);
+    expect(BirdYPositionRange(555)).toBeGreaterThanOrEqual(1);
+  });
+
+  it("returns correct position for credit score 615", () => {
+    expect(BirdYPositionRange(615)).toBeLessThanOrEqual(9);
+    expect(BirdYPositionRange(615)).toBeGreaterThanOrEqual(8);
+  });
+
+  it("returns correct position for credit score 931", () => {
+    expect(BirdYPositionRange(931)).toBeLessThanOrEqual(15);
+    expect(BirdYPositionRange(931)).toBeGreaterThanOrEqual(10);
+  });
+  it("returns correct position for an out of bounds number", () => {
+    expect(BirdYPositionRange(9999)).toBeLessThanOrEqual(15);
+    expect(BirdYPositionRange(9999)).toBeGreaterThanOrEqual(10);
+  });
+});
+
+describe("BirdMinDistance works correctly", () => {
+  it("returns correct minimum distance for credit score 97", () => {
+    expect(BirdMinDistance(97)).toBe(3);
+  });
+
+  it("returns correct minimum distance for credit score 335", () => {
+    expect(BirdMinDistance(335)).toBe(3.5);
+  });
+
+  it("returns correct minimum distance for credit score 555", () => {
+    expect(BirdMinDistance(555)).toBe(4);
+  });
+
+  it("returns correct minimum distance for credit score 615", () => {
+    expect(BirdMinDistance(615)).toBe(12);
+  });
+
+  it("returns correct minimum distance for credit score 931", () => {
+    expect(BirdMinDistance(931)).toBe(20);
+  });
+  it("returns correct minimum distance for an out of bounds number", () => {
+    expect(BirdMinDistance(9999)).toBe(20);
   });
 });

@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
 import { useCursor, RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -59,10 +58,6 @@ export default function InsightBird({ insight }: InsightBirdProps) {
   }
 
   useCursor(hovered, "pointer");
-
-  useFrame((state, delta) => {
-    birdRef.current ? (birdRef.current.rotation.y -= delta * 0.5) : null;
-  });
 
   return (
     <>
