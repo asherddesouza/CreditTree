@@ -62,7 +62,7 @@ export default async function PaymentHistoryV1Insights(uuid: string) {
           "Date Unavailable",
         description:
           "You have no payment history data on your credit report. This means that we're unable to provide insights into your payment behavior.",
-        birdColour: "blue",
+        birdColour: "black",
       };
 
       paymentHistoryInsights.push(noPaymentHistoryInsight);
@@ -74,7 +74,7 @@ export default async function PaymentHistoryV1Insights(uuid: string) {
           "Date Unavailable",
         description:
           "You have no missed payments on your credit report. Keep it up!",
-        birdColour: "blue",
+        birdColour: "black",
       };
 
       paymentHistoryInsights.push(noMissedPaymentsInsight);
@@ -91,7 +91,7 @@ export default async function PaymentHistoryV1Insights(uuid: string) {
             ? "payment"
             : "payments"
         } on your credit report. This can negatively impact your credit score and overall credit health.`,
-        birdColour: "blue",
+        birdColour: "black",
       };
 
       paymentHistoryInsights.push(someMissedPaymentsInsight);

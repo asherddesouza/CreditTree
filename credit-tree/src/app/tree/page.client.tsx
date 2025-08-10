@@ -20,11 +20,12 @@ import TreeStage5 from "@/components/tree-stage-5/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
 import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
+import { useState, useRef } from "react";
+import { Mesh } from "three";
 
 interface TreeProps {
   creditScore: number;
@@ -90,9 +91,111 @@ export function CameraSettings(creditScore: number): CameraSettingsProps {
     };
 }
 
+export function BirdScale(creditScore: number): number {
+  if (creditScore <= 200) {
+    return 0.8;
+  } else if (creditScore <= 400) {
+    return 1;
+  } else if (creditScore <= 600) {
+    return 1.2;
+  } else if (creditScore <= 800) {
+    return 2.5;
+  } else {
+    return 3;
+  }
+}
+
+export function BirdYPositionRange(creditScore: number): number {
+  if (creditScore <= 200) {
+    return Math.random() * (2 - 1) + 1;
+  } else if (creditScore <= 400) {
+    return Math.random() * (2 - 1) + 1;
+  } else if (creditScore <= 600) {
+    return Math.random() * (3 - 1) + 1;
+  } else if (creditScore <= 800) {
+    return Math.random() * (9 - 8) + 8;
+  } else {
+    return Math.random() * (15 - 10) + 10;
+  }
+}
+
+export function BirdMinDistance(creditScore: number): number {
+  if (creditScore <= 200) {
+    return 3;
+  } else if (creditScore <= 400) {
+    return 3.5;
+  } else if (creditScore <= 600) {
+    return 4;
+  } else if (creditScore <= 800) {
+    return 12;
+  } else {
+    return 20;
+  }
+}
+
 export default function CreditTree({ creditScore, insights }: TreeProps) {
   let treeStage = TreeStage(creditScore);
   let cameraSettings = CameraSettings(creditScore);
+  let birdScale = BirdScale(creditScore);
+  let birdYDistance = BirdYPositionRange(creditScore);
+  const minDistance = BirdMinDistance(creditScore);
+  const radius = minDistance;
+
+  const [selectedInsight, setSelectedInsight] =
+    useState<InsightMessageProps | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // then, add the clouds things so that we know if an insight has been clicked or not
+  // then, add onClicks to the birds which display modals
+  // once an insight is dismissed, remove the clouds
+
+  function handleBirdClicked(insight: InsightMessageProps) {
+    setSelectedInsight(insight);
+    setModalVisible(true);
+  }
+
+  const insightBirds = insights.map((insight, index) => {
+    const angle = (index / insights.length) * 2 * Math.PI;
+    const x =
+      Math.cos(angle) * radius + Math.sign(Math.cos(angle)) * minDistance;
+    const z =
+      Math.sin(angle) * radius + Math.sign(Math.sin(angle)) * minDistance;
+
+    return (
+      <mesh
+        position={[x, index * birdYDistance, z]}
+        rotation-y={Math.random() * Math.PI * 2}
+        key={index}
+        scale={birdScale}
+        onClick={(event) => {
+          event.stopPropagation();
+          handleBirdClicked(insight);
+        }}
+      >
+        <InsightBird insight={insight} />
+      </mesh>
+    );
+  });
+
+  const showInsightModal = (insight: InsightMessageProps | null) => {
+    if (insight !== null) {
+      return (
+        <Html fullscreen>
+          <InsightMessage
+            title={insight.title}
+            date={insight.date}
+            numberChange={insight.numberChange}
+            infoCard={insight.infoCard}
+            description={insight.description}
+            birdColour={insight.birdColour}
+            setModalVisible={setModalVisible}
+            modalVisible={modalVisible}
+          />
+        </Html>
+      );
+    }
+    return null;
+  };
 
   return (
     <>
@@ -105,38 +208,24 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
         }}
       >
         <Html fullscreen>
-          <Link className={styles.topRightOverlay} href="/profile">
+          <Link
+            className={styles.topRightOverlay}
+            href="/profile"
+            data-testid="profile-button"
+          >
             <button className={styles.profileButton}>
               <Image
                 className={styles.profileIcon}
                 src="/resources/profile.png"
                 width={35}
                 height={50}
-                alt="profile"
+                alt="profile page"
               />
             </button>
           </Link>
-
-          {/* <>
-            <InsightMessage
-              title="Your credit limit has increased!"
-              date="May 2025"
-              numberChange={{
-                from: "£300",
-                to: "£800",
-                sentiment: "positive",
-              }}
-              infoCard={{
-                iconUrl: "/resources/credit-card.png",
-                name: "Capital One",
-                number: "0645 4534 4354 0543",
-                type: "Credit Card",
-              }}
-              description="Keep it up!"
-              birdColour="pink"
-            />
-          </> */}
         </Html>
+
+        {modalVisible && showInsightModal(selectedInsight)}
 
         <Perf position="top-left" />
 
@@ -149,11 +238,6 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
           background
         />
 
-        {/* <Clouds material={THREE.MeshBasicMaterial}>
-          <Cloud segments={40} bounds={[10, 2, 2]} volume={10} color="orange" />
-          <Cloud seed={1} scale={2} volume={5} color="hotpink" fade={100} />
-        </Clouds> */}
-
         <OrbitControls
           makeDefault
           enablePan={false}
@@ -164,7 +248,7 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
         <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
         <ambientLight intensity={4} />
 
-        {/* <InsightBird birdType={"green"} /> */}
+        {insightBirds}
 
         {treeStage === 1 ? <TreeStage1 /> : null}
         {treeStage === 2 ? <TreeStage2 /> : null}

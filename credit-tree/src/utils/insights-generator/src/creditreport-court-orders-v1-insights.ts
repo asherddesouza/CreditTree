@@ -64,7 +64,7 @@ export default async function CourtOrdersV1Insights(uuid: string) {
         description: `You have ${courtOrdersCount} court ${
           courtOrdersCount === 1 ? "order" : "orders"
         } on your credit report.`,
-        birdColour: "blue",
+        birdColour: "purple",
       };
 
       courtOrdersInsights.push(someCourtOrdersInsight);

@@ -132,6 +132,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
         <button
           onClick={logoutUser}
           className={`fontPaytone ${styles.logoutButton}`}
+          data-testid="logout-button"
         >
           Logout
         </button>

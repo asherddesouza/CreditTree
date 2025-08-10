@@ -22,6 +22,8 @@ describe("InsightMessage Component", async () => {
         }}
         description="Keep it up!"
         birdColour="pink"
+        setModalVisible={() => {}}
+        modalVisible={true}
       />
     );
 
@@ -57,6 +59,8 @@ describe("InsightMessage Component", async () => {
         title="Your credit limit has increased!"
         date="May 2025"
         description="Keep it up!"
+        setModalVisible={() => {}}
+        modalVisible={true}
       />
     );
 

@@ -6,10 +6,6 @@ import { useState, useEffect, useActionState } from "react";
 import { changePassword } from "@/app/profile/change-password/page";
 import { redirect } from "next/navigation";
 
-// function changePassword(any: any) {
-//   return { message: "User updated successfully" };
-// }
-
 export default function Page() {
   const [state, formAction, pending] = useActionState(changePassword, {
     message: "",
@@ -88,6 +84,7 @@ export default function Page() {
         <button
           className={`fontPaytone ${styles.submitButton}`}
           disabled={pending}
+          data-testid="submit-button"
         >
           Submit
         </button>

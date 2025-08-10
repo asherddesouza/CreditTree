@@ -106,7 +106,7 @@ describe("InsolvenciesV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "purple",
         date: "Feb 2023",
         description:
           "You have 1 insolvency on your credit report. This will stay on your credit report for 6 years and can significantly impact your credit score.",
@@ -124,7 +124,7 @@ describe("InsolvenciesV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "purple",
         date: "Feb 2023",
         description:
           "You have 2 insolvencies on your credit report. This will stay on your credit report for 6 years and can significantly impact your credit score.",

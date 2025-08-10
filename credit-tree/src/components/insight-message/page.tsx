@@ -1,13 +1,9 @@
-import CourtOrdersV1Insights from "@/utils/insights-generator/src/creditreport-court-orders-v1-insights";
-import ElectoralRollV1Insights from "@/utils/insights-generator/src/creditreport-electoral-roll-v1-insights";
-import FraudWarningsV1Insights from "@/utils/insights-generator/src/creditreport-fraud-warnings-v1-insights";
-import InsolvenciesV1Insights from "@/utils/insights-generator/src/creditreport-insolvencies-v1-insights";
-import MonthlyScoresV1Insights from "@/utils/insights-generator/src/creditreport-monthly-scores-v1-insights";
-import RankedInsightsByMonthV1Insights from "@/utils/insights-generator/src/creditreport-ranked-insights-by-month-v1-insights";
+"use client";
 
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export interface InsightMessageProps {
   title: string;
@@ -32,6 +28,8 @@ export interface InsightMessageProps {
     | "yellow"
     | "purple"
     | "pink";
+  setModalVisible: (visible: boolean) => void;
+  modalVisible: boolean;
 }
 
 export default function InsightMessage({
@@ -41,78 +39,79 @@ export default function InsightMessage({
   infoCard,
   description,
   birdColour = "black",
+  setModalVisible,
+  modalVisible,
 }: InsightMessageProps) {
   return (
-    <div className={`fontPavanam ${styles.insightMessageContainer}`}>
-      <div className={styles.insightMessage}>
-        <div className={styles.closeButtonContainer}>
-          <button className={styles.closeButton}>✖</button>
-        </div>
-        <div className={styles.topInfoContainer}>
-          <div className={styles.title}>{title}</div>
-          <div className={styles.date}>{date}</div>
-        </div>
-        {numberChange && (
-          <div className={styles.numberChangeCard}>
-            <div>{numberChange.from}</div>
-            {numberChange.sentiment === "positive" ? (
-              <div className={styles.greenArrow}>→</div>
-            ) : (
-              <div className={styles.redArrow}>→</div>
-            )}
-            <div>{numberChange.to}</div>
-          </div>
-        )}
-        {infoCard && (
-          <div className={styles.infoCard}>
-            <div className={styles.infoCardLeft}>
-              <Image
-                priority
-                className={styles.icon}
-                src={infoCard.iconUrl}
-                alt="accountIcon"
-                width={50}
-                height={50}
-              />
-              <div className={styles.infoCardText}>
-                <div className={styles.name}>{infoCard.name}</div>
-                {infoCard.number ? (
-                  <div className={styles.number}>{infoCard.number}</div>
-                ) : null}
-              </div>
+    <>
+      {modalVisible && (
+        <div className={`fontPavanam ${styles.insightMessageContainer}`}>
+          <div className={styles.insightMessage}>
+            <div className={styles.closeButtonContainer}>
+              <button
+                className={styles.closeButton}
+                onClick={() => setModalVisible(false)}
+              >
+                ✖
+              </button>
             </div>
+            <div className={styles.topInfoContainer}>
+              <div className={styles.title}>{title}</div>
+              <div className={styles.date}>{date}</div>
+            </div>
+            {numberChange && (
+              <div className={styles.numberChangeCard}>
+                <div>{numberChange.from}</div>
+                {numberChange.sentiment === "positive" ? (
+                  <div className={styles.greenArrow}>→</div>
+                ) : (
+                  <div className={styles.redArrow}>→</div>
+                )}
+                <div>{numberChange.to}</div>
+              </div>
+            )}
+            {infoCard && (
+              <div className={styles.infoCard}>
+                <div className={styles.infoCardLeft}>
+                  <Image
+                    priority
+                    className={styles.icon}
+                    src={infoCard.iconUrl}
+                    alt="accountIcon"
+                    width={50}
+                    height={50}
+                  />
+                  <div className={styles.infoCardText}>
+                    <div className={styles.name}>{infoCard.name}</div>
+                    {infoCard.number ? (
+                      <div className={styles.number}>{infoCard.number}</div>
+                    ) : null}
+                  </div>
+                </div>
 
-            <div className={styles.type}>{infoCard.type}</div>
+                <div className={styles.type}>{infoCard.type}</div>
+              </div>
+            )}
+
+            <div className={styles.description}>{description}</div>
+            <Link
+              className={`fontPavanam ${styles.externalCta}`}
+              href="https://app.clearscore.com/"
+            >
+              See more info on ClearScore
+            </Link>
+            <div className={styles.insightBirdContainer}>
+              <Image
+                className={styles.insightBird}
+                src={`/resources/bird-images/${birdColour}.png`}
+                alt="insightBird"
+                width={342}
+                height={183}
+              />
+            </div>
           </div>
-        )}
-
-        <div className={styles.description}>{description}</div>
-        <Link
-          className={`fontPavanam ${styles.externalCta}`}
-          href="https://app.clearscore.com/"
-        >
-          See more info on ClearScore
-        </Link>
-        <button
-          className={styles.externalCta}
-          onClick={() => {
-            RankedInsightsByMonthV1Insights(
-              "0e4fc365-9704-4430-8b98-24b49ba8bdb9"
-            );
-          }}
-        >
-          Generate Insights
-        </button>
-        <div className={styles.insightBirdContainer}>
-          <Image
-            className={styles.insightBird}
-            src={`/resources/bird-images/${birdColour}.png`}
-            alt="insightBird"
-            width={342}
-            height={183}
-          />
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
