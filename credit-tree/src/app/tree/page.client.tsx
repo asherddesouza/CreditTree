@@ -20,12 +20,12 @@ import TreeStage5 from "@/components/tree-stage-5/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
 import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { Mesh } from "three";
 
 interface TreeProps {
   creditScore: number;
@@ -208,37 +208,21 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
         }}
       >
         <Html fullscreen>
-          <Link className={styles.topRightOverlay} href="/profile">
+          <Link
+            className={styles.topRightOverlay}
+            href="/profile"
+            data-testid="profile-button"
+          >
             <button className={styles.profileButton}>
               <Image
                 className={styles.profileIcon}
                 src="/resources/profile.png"
                 width={35}
                 height={50}
-                alt="profile"
+                alt="profile page"
               />
             </button>
           </Link>
-
-          {/* <>
-            <InsightMessage
-              title="Your credit limit has increased!"
-              date="May 2025"
-              numberChange={{
-                from: "£300",
-                to: "£800",
-                sentiment: "positive",
-              }}
-              infoCard={{
-                iconUrl: "/resources/credit-card.png",
-                name: "Capital One",
-                number: "0645 4534 4354 0543",
-                type: "Credit Card",
-              }}
-              description="Keep it up!"
-              birdColour="pink"
-            />
-          </> */}
         </Html>
 
         {modalVisible && showInsightModal(selectedInsight)}
@@ -253,11 +237,6 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
           files="./textures/autumn_field_puresky_4k.hdr"
           background
         />
-
-        {/* <Clouds material={THREE.MeshBasicMaterial}>
-          <Cloud segments={40} bounds={[10, 2, 2]} volume={10} color="orange" />
-          <Cloud seed={1} scale={2} volume={5} color="hotpink" fade={100} />
-        </Clouds> */}
 
         <OrbitControls
           makeDefault
