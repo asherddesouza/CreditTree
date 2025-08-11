@@ -3,7 +3,7 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
-import { changePassword } from "@/app/profile/change-password/page";
+import { changePassword } from "@/app/profile/change-password/actions";
 import { redirect } from "next/navigation";
 
 export default function Page() {
