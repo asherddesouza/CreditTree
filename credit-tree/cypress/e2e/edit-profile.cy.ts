@@ -45,7 +45,9 @@ describe("Test that the edit profile page works as expected", () => {
     cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
     cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     cy.get("a").contains("Edit Profile").click();

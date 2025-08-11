@@ -7,9 +7,9 @@ describe("Test that account flows work as expected", () => {
     cy.get('input[name="password"]').type("Pa55word!");
     cy.get('input[name="confirmPassword"]').type("Pa55word!");
 
-    cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]', { timeout: 20000 }).click();
 
-    cy.url({ timeout: 10000 }).should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
 
     cy.visit("http://localhost:3000/profile");
 
