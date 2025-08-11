@@ -3,7 +3,6 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 export interface InsightMessageProps {
   title: string;

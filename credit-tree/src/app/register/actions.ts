@@ -20,7 +20,7 @@ export async function createUser(prevState: any, formData: FormData) {
   password = password ? (password as string).trim() : "";
   confirmPassword = confirmPassword ? (confirmPassword as string).trim() : "";
 
-  let pattern = new RegExp(
+  const pattern = new RegExp(
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
   );
 

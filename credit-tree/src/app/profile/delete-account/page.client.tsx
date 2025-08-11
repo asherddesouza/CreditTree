@@ -2,14 +2,9 @@
 
 import styles from "./page.module.css";
 import Image from "next/image";
-import Link from "next/link";
 import { useActionState } from "react";
 import { deleteAccount } from "./actions";
 import { redirect } from "next/navigation";
-
-// function deleteAccount(any: any) {
-//   return { message: "User updated successfully" };
-// }
 
 export default function Page() {
   const [state, formAction, pending] = useActionState(deleteAccount, {
