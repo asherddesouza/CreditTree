@@ -29,7 +29,7 @@ interface ElectoralRollJson {
 
 export default async function ElectoralRollV1Insights(uuid: string) {
   try {
-    let electoralRollInsights: ElectoralRollInsight[] = [];
+    const electoralRollInsights: ElectoralRollInsight[] = [];
     const electoralRollData =
       await prisma.creditreport_electoral_roll_v1.findFirst({
         where: { id: uuid },

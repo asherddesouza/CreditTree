@@ -31,7 +31,7 @@ interface PaymentHistoryJson {
 
 export default async function PaymentHistoryV1Insights(uuid: string) {
   try {
-    let paymentHistoryInsights: PaymentHistoryInsight[] = [];
+    const paymentHistoryInsights: PaymentHistoryInsight[] = [];
     const paymentHistoryData =
       await prisma.creditreport_payment_history_overview_v1.findFirst({
         where: { id: uuid },

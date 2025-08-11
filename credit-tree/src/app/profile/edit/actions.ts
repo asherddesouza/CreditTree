@@ -9,7 +9,7 @@ import validator from "validator";
 export async function editUser(prevData: any, formData: FormData) {
   const supabase = await createClient();
 
-  let uuid = formData.get("uuid");
+  const uuid = formData.get("uuid");
 
   let currentEmail = formData.get("current_email");
   currentEmail = currentEmail ? (currentEmail as string).trim() : "";

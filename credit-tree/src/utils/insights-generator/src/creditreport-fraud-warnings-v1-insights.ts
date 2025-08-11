@@ -29,7 +29,7 @@ interface FraudWarningsJson {
 
 export default async function FraudWarningsV1Insights(uuid: string) {
   try {
-    let fraudWarningsInsights: FraudWarningsInsight[] = [];
+    const fraudWarningsInsights: FraudWarningsInsight[] = [];
     const fraudWarningsData =
       await prisma.creditreport_fraud_warnings_v1.findFirst({
         where: { id: uuid },

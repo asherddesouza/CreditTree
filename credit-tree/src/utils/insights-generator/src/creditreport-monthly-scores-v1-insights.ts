@@ -34,7 +34,7 @@ export interface ScoreData {
 
 export default async function MonthlyScoresV1Insights(uuid: string) {
   try {
-    let monthlyScoresInsights: MonthlyScoresInsight[] = [];
+    const monthlyScoresInsights: MonthlyScoresInsight[] = [];
     const monthlyScoresData =
       await prisma.creditreport_monthly_scores_v1.findFirst({
         where: { id: uuid },
