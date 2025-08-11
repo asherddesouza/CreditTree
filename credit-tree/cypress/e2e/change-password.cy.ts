@@ -160,7 +160,9 @@ describe("Test that the change password page works as expected", () => {
     cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
     cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     // Go to the change password page and enter the incorrect old password
