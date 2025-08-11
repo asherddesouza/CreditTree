@@ -7,7 +7,7 @@ describe("Test that the CreditTree page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
   });
 });

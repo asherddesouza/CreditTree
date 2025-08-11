@@ -56,8 +56,8 @@ export const scenarios = {
 export function createSeeder(scenario: SeedScenarios, uuid: string) {
   const seeder = scenarios[scenario];
 
-  console.log("scenario:", scenario);
-  console.log("scenarios keys:", Object.keys(scenarios));
+  // console.log("scenario:", scenario);
+  // console.log("scenarios keys:", Object.keys(scenarios));
 
   if (!seeder) {
     throw new Error(`Seeder for scenario "${scenario}" not found.`);
@@ -95,7 +95,7 @@ export default async function SeedDatabase(
 
     await scenarioMap[scenario](uuid, seeder)
       .then((result) => {
-        console.log(`Seeding completed for scenario: ${scenario}`);
+        // console.log(`Seeding completed for scenario: ${scenario}`);
         return result;
       })
       .catch((error) => {

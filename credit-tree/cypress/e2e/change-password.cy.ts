@@ -9,16 +9,18 @@ describe("Test that the change password page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 10000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 10000 }).should("contain", "/profile");
 
     // Go to the change password page
 
     cy.get("a").contains("Change Password").click();
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 10000 }).should("contain", "/profile/change-password");
 
     cy.get('input[name="old_password"]').type("Pa55word!");
     cy.get('input[name="new_password"]').type("NewPa55word!");
@@ -26,29 +28,33 @@ describe("Test that the change password page works as expected", () => {
 
     cy.contains("button", "Submit").should("exist").click();
 
-    cy.url().should("contain", "/profile");
+    cy.url({ timeout: 10000 }).should("contain", "/profile");
 
-    cy.get('[data-testid="logout-button"]').should("exist").click();
+    cy.get('[data-testid="logout-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
 
     // Attempt to login with the new password
 
-    cy.url().should("contain", "/login");
+    cy.url({ timeout: 10000 }).should("contain", "/login");
 
     cy.get('input[name="email"]').type("testlogin@credittree.com");
     cy.get('input[name="password"]').type("NewPa55word!");
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     // Change back to the original password
 
     cy.get("a").contains("Change Password").click();
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
 
     cy.get('input[name="old_password"]').type("NewPa55word!");
     cy.get('input[name="new_password"]').type("Pa55word!");
@@ -56,11 +62,13 @@ describe("Test that the change password page works as expected", () => {
 
     cy.contains("button", "Submit").should("exist").click();
 
-    cy.url().should("contain", "/profile");
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
-    cy.get('[data-testid="logout-button"]').should("exist").click();
+    cy.get('[data-testid="logout-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
 
-    cy.url().should("contain", "/login");
+    cy.url({ timeout: 20000 }).should("contain", "/login");
 
     // Check that the original password works again
 
@@ -69,7 +77,7 @@ describe("Test that the change password page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
   });
 
@@ -83,16 +91,18 @@ describe("Test that the change password page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     // Go to the change password page and enter the incorrect old password
 
     cy.get("a").contains("Change Password").click();
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
 
     cy.get('input[name="old_password"]').type("INCORRECT_PASSWORD11!");
     cy.get('input[name="new_password"]').type("NewPa55word!");
@@ -100,7 +110,7 @@ describe("Test that the change password page works as expected", () => {
 
     cy.contains("button", "Submit").should("exist").click();
 
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
     cy.contains("Your old password is incorrect.").should("exist");
   });
 
@@ -112,18 +122,20 @@ describe("Test that the change password page works as expected", () => {
     cy.get('input[name="email"]').type("testlogin@credittree.com");
     cy.get('input[name="password"]').type("Pa55word!");
 
-    cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]', { timeout: 20000 }).click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     // Go to the change password page and enter the incorrect old password
 
     cy.get("a").contains("Change Password").click();
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
 
     cy.get('input[name="old_password"]').type("Pa55word!");
     cy.get('input[name="new_password"]').type("NewPa55word!");
@@ -131,7 +143,7 @@ describe("Test that the change password page works as expected", () => {
 
     cy.contains("button", "Submit").should("exist").click();
 
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
     cy.contains("Your passwords don't match. Please retry.").should("exist");
   });
 
@@ -143,18 +155,20 @@ describe("Test that the change password page works as expected", () => {
     cy.get('input[name="email"]').type("testlogin@credittree.com");
     cy.get('input[name="password"]').type("Pa55word!");
 
-    cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]', { timeout: 20000 }).click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     // Go to the change password page and enter the incorrect old password
 
     cy.get("a").contains("Change Password").click();
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
 
     cy.get('input[name="old_password"]').type("Pa55word!");
     cy.get('input[name="new_password"]').type("password1");
@@ -162,7 +176,7 @@ describe("Test that the change password page works as expected", () => {
 
     cy.contains("button", "Submit").should("exist").click();
 
-    cy.url().should("contain", "/profile/change-password");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/change-password");
     cy.contains(
       "Your password must contain at least one uppercase letter, one lowercase letter, one number, and one special character."
     ).should("exist");

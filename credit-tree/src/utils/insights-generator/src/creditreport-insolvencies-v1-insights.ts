@@ -29,7 +29,7 @@ interface InsolvenciesJson {
 
 export default async function InsolvenciesV1Insights(uuid: string) {
   try {
-    let insolvenciesInsights: InsolvenciesInsight[] = [];
+    const insolvenciesInsights: InsolvenciesInsight[] = [];
     const insolvenciesData =
       await prisma.creditreport_insolvencies_v1.findFirst({
         where: { id: uuid },

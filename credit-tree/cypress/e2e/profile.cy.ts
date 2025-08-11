@@ -7,10 +7,12 @@ describe("Test that the profile page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 20000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
   });
 });

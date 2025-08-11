@@ -1,4 +1,4 @@
-import { render, screen, prettyDOM } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import Page from "./page.client";
 import "@testing-library/jest-dom";
 

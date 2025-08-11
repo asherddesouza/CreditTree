@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
-import { createUser } from "@/app/register/page";
+import { createUser } from "@/app/register/actions";
 import Link from "next/link";
 
 export default function Page() {

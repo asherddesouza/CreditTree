@@ -3,7 +3,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
-import { loginUser } from "@/app/login/page";
+import { loginUser } from "@/app/login/actions";
 import Link from "next/link";
 
 export default function Login() {

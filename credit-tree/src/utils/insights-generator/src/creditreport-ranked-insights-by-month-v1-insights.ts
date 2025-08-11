@@ -44,7 +44,7 @@ function findInsightByType(rankedInsights: any[], searchTerm: string) {
 
 export default async function RankedInsightsByMonthV1Insights(uuid: string) {
   try {
-    let rankedInsightsByMonthInsights: RankedInsightsByMonthInsight[] = [];
+    const rankedInsightsByMonthInsights: RankedInsightsByMonthInsight[] = [];
     const rankedInsightsByMonthData =
       await prisma.creditreport_ranked_insights_by_month_v1.findFirst({
         where: { id: uuid },

@@ -1,14 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import {
-  OrbitControls,
-  Sky,
-  Environment,
-  Cloud,
-  Clouds,
-  Html,
-} from "@react-three/drei";
+import { OrbitControls, Environment, Html } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { ToneMapping, EffectComposer } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
@@ -24,8 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
-import { useState, useRef } from "react";
-import { Mesh } from "three";
+import { useState } from "react";
 
 interface TreeProps {
   creditScore: number;
@@ -134,20 +126,16 @@ export function BirdMinDistance(creditScore: number): number {
 }
 
 export default function CreditTree({ creditScore, insights }: TreeProps) {
-  let treeStage = TreeStage(creditScore);
-  let cameraSettings = CameraSettings(creditScore);
-  let birdScale = BirdScale(creditScore);
-  let birdYDistance = BirdYPositionRange(creditScore);
+  const treeStage = TreeStage(creditScore);
+  const cameraSettings = CameraSettings(creditScore);
+  const birdScale = BirdScale(creditScore);
+  const birdYDistance = BirdYPositionRange(creditScore);
   const minDistance = BirdMinDistance(creditScore);
   const radius = minDistance;
 
   const [selectedInsight, setSelectedInsight] =
     useState<InsightMessageProps | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
-
-  // then, add the clouds things so that we know if an insight has been clicked or not
-  // then, add onClicks to the birds which display modals
-  // once an insight is dismissed, remove the clouds
 
   function handleBirdClicked(insight: InsightMessageProps) {
     setSelectedInsight(insight);

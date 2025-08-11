@@ -10,7 +10,7 @@ import RankedInsightsByMonthV1Insights from "./creditreport-ranked-insights-by-m
 import PaymentHistoryV1Insights from "./creditreport-payment-history-overview-v1-insights";
 
 export default async function generateInsights(uuid: string) {
-  let generatedInsights = [];
+  const generatedInsights = [];
 
   const insightFunctions = [
     CourtOrdersV1Insights,

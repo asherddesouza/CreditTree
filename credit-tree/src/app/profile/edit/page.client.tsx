@@ -3,7 +3,7 @@
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
-import { editUser } from "@/app/profile/edit/page";
+import { editUser } from "@/app/profile/edit/actions";
 import { redirect } from "next/navigation";
 
 // function editUser(any: any) {

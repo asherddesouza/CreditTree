@@ -1,6 +1,3 @@
-import { CatmullRomLine } from "@react-three/drei";
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
 import { CatmullRomCurve3, Vector3 } from "three";
 import LeafType1 from "../leaf-type-1/page";
 import LeafType2 from "../leaf-type-2/page";
@@ -11,10 +8,6 @@ export default function TreeStage1() {
     new Vector3(0.3, 1, 0),
     new Vector3(0, 2, 0.25),
     new Vector3(0, 3, 0),
-  ]);
-  const roundLeafPath = new CatmullRomCurve3([
-    new Vector3(0, 0, -0.7),
-    new Vector3(0, 0, 0.7),
   ]);
 
   return (

@@ -29,7 +29,7 @@ interface CourtOrdersJson {
 
 export default async function CourtOrdersV1Insights(uuid: string) {
   try {
-    let courtOrdersInsights: CourtOrdersInsight[] = [];
+    const courtOrdersInsights: CourtOrdersInsight[] = [];
     const courtOrdersData = await prisma.creditreport_court_orders_v1.findFirst(
       {
         where: { id: uuid },

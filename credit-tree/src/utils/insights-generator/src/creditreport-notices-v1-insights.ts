@@ -29,7 +29,7 @@ interface NoticesJson {
 
 export default async function NoticesV1Insights(uuid: string) {
   try {
-    let noticesInsights: NoticesInsight[] = [];
+    const noticesInsights: NoticesInsight[] = [];
     const noticesData = await prisma.creditreport_notices_v1.findFirst({
       where: { id: uuid },
     });
