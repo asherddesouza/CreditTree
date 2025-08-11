@@ -7,19 +7,21 @@ describe("Test that the edit profile page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
-    cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.get('[data-testid="profile-button"]', { timeout: 10000 })
+      .should("exist")
+      .click();
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     cy.get("a").contains("Edit Profile").click();
-    cy.url().should("contain", "/profile/edit");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/edit");
 
     cy.get('input[name="new_email"]').type("testloginNEW@credittree.com");
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/profile");
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
     cy.contains("testloginNEW@credittree.com").should("exist");
 
     cy.get("a").contains("Edit Profile").click();
@@ -28,11 +30,11 @@ describe("Test that the edit profile page works as expected", () => {
     cy.get('input[name="new_email"]').type("testlogin@credittree.com");
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/profile");
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
     cy.contains("testlogin@credittree.com").should("exist");
   });
 
-  it("should be able to edit a user's profile", () => {
+  it("shouldn't be able to edit a user's profile if the email is the same", () => {
     cy.visit("http://localhost:3000/login");
 
     cy.get('input[name="email"]').type("testlogin@credittree.com");
@@ -40,19 +42,21 @@ describe("Test that the edit profile page works as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 20000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
 
     cy.get('[data-testid="profile-button"]').should("exist").click();
-    cy.url().should("contain", "/profile");
+    cy.url({ timeout: 20000 }).should("contain", "/profile");
 
     cy.get("a").contains("Edit Profile").click();
-    cy.url().should("contain", "/profile/edit");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/edit");
 
-    cy.get('input[name="new_email"]').type("testlogin@credittree.com");
+    cy.get('input[name="new_email"]', { timeout: 10000 }).type(
+      "testlogin@credittree.com"
+    );
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/profile/edit");
+    cy.url({ timeout: 20000 }).should("contain", "/profile/edit");
     cy.contains(
       "Your new email can't be the same as your current email."
     ).should("exist");

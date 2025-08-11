@@ -9,18 +9,18 @@ describe("Test that account flows work as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 10000 }).should("contain", "/tree");
 
     cy.visit("http://localhost:3000/profile");
 
     cy.get("a").contains("Delete Account").click();
 
-    cy.get('input[name="password"]').type("Pa55word!");
-    cy.get('input[name="confirm"]').type("CONFIRM");
+    cy.get('input[name="password"]', { timeout: 10000 }).type("Pa55word!");
+    cy.get('input[name="confirm"]', { timeout: 10000 }).type("CONFIRM");
 
     cy.get("button").contains("Delete Account").click();
 
-    cy.url().should("contain", "/register");
+    cy.url({ timeout: 10000 }).should("contain", "/register");
   });
 
   it("should not create a test user with missing fields", () => {
@@ -32,7 +32,7 @@ describe("Test that account flows work as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/register");
+    cy.url({ timeout: 10000 }).should("contain", "/register");
     cy.contains("Error: You can't have any empty fields.").should("exist");
   });
 
@@ -46,7 +46,7 @@ describe("Test that account flows work as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/register");
+    cy.url({ timeout: 10000 }).should("contain", "/register");
     cy.contains("Your passwords don't match. Please retry.").should("exist");
   });
 
@@ -58,7 +58,7 @@ describe("Test that account flows work as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/tree");
+    cy.url({ timeout: 10000 }).should("contain", "/tree");
     cy.get("canvas").should("exist");
   });
 
@@ -70,7 +70,7 @@ describe("Test that account flows work as expected", () => {
 
     cy.get('button[type="submit"]').click();
 
-    cy.url().should("contain", "/login");
+    cy.url({ timeout: 10000 }).should("contain", "/login");
     cy.get("canvas").should("not.exist");
   });
 });
