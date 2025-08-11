@@ -2,6 +2,12 @@ name: Cypress Tests
 
 on: push
 
+env:
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DIRECT_URL: ${{ secrets.DIRECT_URL }}
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ROLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ROLE_KEY }}
+
 jobs:
   cypress-run:
     runs-on: ubuntu-24.04
@@ -18,8 +24,3 @@ jobs:
           build: npm run build
           start: npm start
           working-directory: credit-tree
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DIRECT_URL: ${{ secrets.DIRECT_URL }}
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ROLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ROLE_KEY }}
