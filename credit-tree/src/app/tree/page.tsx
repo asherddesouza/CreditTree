@@ -28,10 +28,10 @@ export default async function Scene() {
     creditScore = jsonObj?.scores?.[0]?.score;
   }
 
-  console.log("Monthly Scores Data:", creditScore);
+  // console.log("Monthly Scores Data:", creditScore);
 
   const insights = await generateInsights(data.user.id);
-  console.log("Generated Insights:", insights);
+  // console.log("Generated Insights:", insights);
 
   return <CreditTree creditScore={900} insights={insights} />;
 }

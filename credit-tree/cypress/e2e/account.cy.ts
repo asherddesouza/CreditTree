@@ -23,7 +23,7 @@ describe("Test that account flows work as expected", () => {
     cy.url().should("contain", "/register");
   });
 
-  it.only("should not create a test user with missing fields", () => {
+  it("should not create a test user with missing fields", () => {
     cy.visit("http://localhost:3000/register");
 
     cy.get('input[name="name"]').type("Test User");
@@ -36,7 +36,7 @@ describe("Test that account flows work as expected", () => {
     cy.contains("Error: You can't have any empty fields.").should("exist");
   });
 
-  it.only("should not create a test user with incorrect password entry", () => {
+  it("should not create a test user with incorrect password entry", () => {
     cy.visit("http://localhost:3000/register");
 
     cy.get('input[name="name"]').type("Test User");

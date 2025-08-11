@@ -20,8 +20,6 @@ export async function editUser(prevData: any, formData: FormData) {
   const newProfileImage = Number(formData.get("new_profile_image"));
 
   if (newEmail === "") {
-    console.log("profile:", newProfileImage);
-
     await prisma.user_data.update({
       where: { id: uuid as string },
       data: { profile_image: newProfileImage },

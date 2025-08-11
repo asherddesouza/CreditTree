@@ -32,7 +32,7 @@ describe("Test that the edit profile page works as expected", () => {
     cy.contains("testlogin@credittree.com").should("exist");
   });
 
-  it.only("should be able to edit a user's profile", () => {
+  it("should be able to edit a user's profile", () => {
     cy.visit("http://localhost:3000/login");
 
     cy.get('input[name="email"]').type("testlogin@credittree.com");
