@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import Image from "next/image";
 import Link from "next/link";
 
 export interface InsightMessageProps {
@@ -72,8 +71,7 @@ export default function InsightMessage({
             {infoCard && (
               <div className={styles.infoCard}>
                 <div className={styles.infoCardLeft}>
-                  <Image
-                    priority
+                  <img
                     className={styles.icon}
                     src={infoCard.iconUrl}
                     alt="accountIcon"
@@ -100,7 +98,7 @@ export default function InsightMessage({
               See more info on ClearScore
             </Link>
             <div className={styles.insightBirdContainer}>
-              <Image
+              <img
                 className={styles.insightBird}
                 src={`/resources/bird-images/${birdColour}.png`}
                 alt="insightBird"

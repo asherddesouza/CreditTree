@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import Image from "next/image";
 import { useActionState } from "react";
 import { changePassword } from "@/app/profile/change-password/actions";
 import { redirect } from "next/navigation";
@@ -32,7 +31,7 @@ export default function Page() {
       </div>
       <form className={styles.form} action={formAction}>
         <div>
-          <Image
+          <img
             className={styles.padlockIcon}
             src="/resources/padlock.png"
             width={53}
@@ -47,7 +46,7 @@ export default function Page() {
           />
         </div>
         <div>
-          <Image
+          <img
             className={styles.padlockIcon}
             src="/resources/padlock.png"
             width={53}
@@ -62,7 +61,7 @@ export default function Page() {
           />
         </div>
         <div>
-          <Image
+          <img
             className={styles.padlockIcon}
             src="/resources/padlock.png"
             width={53}

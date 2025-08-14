@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
 import { loginUser } from "@/app/login/actions";
@@ -16,7 +15,7 @@ export default function Login() {
       <div className={`fontPaytone ${styles.title}`}>Welcome Back!</div>
 
       <div>
-        <Image
+        <img
           className={styles.emailIcon}
           src="/resources/mail.png"
           width={45}
@@ -32,7 +31,7 @@ export default function Login() {
       </div>
 
       <div>
-        <Image
+        <img
           className={styles.padlockIcon}
           src="/resources/padlock.png"
           width={53}

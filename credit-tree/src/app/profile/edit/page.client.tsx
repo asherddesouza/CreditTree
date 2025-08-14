@@ -1,14 +1,9 @@
 "use client";
 
 import styles from "./page.module.css";
-import Image from "next/image";
 import { useState, useEffect, useActionState } from "react";
 import { editUser } from "@/app/profile/edit/actions";
 import { redirect } from "next/navigation";
-
-// function editUser(any: any) {
-//   return { message: "User updated successfully" };
-// }
 
 interface ProfileProps {
   email: string;
@@ -92,7 +87,7 @@ export default function Page({ email, profile_image, uuid }: ProfileProps) {
       </div>
       <div className={styles.profileContainer}>
         <button className={styles.leftArrow} onClick={prevProfileImage} />
-        <Image
+        <img
           className={styles.profile}
           src={profileImageSrc}
           width={250}
@@ -106,7 +101,7 @@ export default function Page({ email, profile_image, uuid }: ProfileProps) {
       </div>
       <form className={styles.form} action={formAction}>
         <div>
-          <Image
+          <img
             className={styles.emailIcon}
             src="/resources/mail.png"
             width={45}
@@ -139,7 +134,7 @@ export default function Page({ email, profile_image, uuid }: ProfileProps) {
         )}
 
         <div>
-          <Image
+          <img
             className={styles.saveIcon}
             src="/resources/save.png"
             width={32}

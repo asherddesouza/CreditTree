@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import Image from "next/image";
 import { useActionState } from "react";
 import { deleteAccount } from "./actions";
 import { redirect } from "next/navigation";
@@ -37,7 +36,7 @@ export default function Page() {
           action.
         </div>
         <div>
-          <Image
+          <img
             className={styles.padlockIcon}
             src="/resources/padlock.png"
             width={53}
@@ -66,7 +65,7 @@ export default function Page() {
         )}
 
         <div className={styles.deleteButtonContainer}>
-          <Image
+          <img
             className={styles.deleteIcon}
             src="/resources/bin.png"
             width={32}
