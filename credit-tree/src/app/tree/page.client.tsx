@@ -17,7 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 interface TreeProps {
   creditScore: number;
@@ -137,33 +137,36 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
     useState<InsightMessageProps | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
 
-  function handleBirdClicked(insight: InsightMessageProps) {
+  const handleBirdClicked = useCallback((insight: InsightMessageProps) => {
     setSelectedInsight(insight);
     setModalVisible(true);
-  }
+  }, []);
 
-  const insightBirds = insights.map((insight, index) => {
-    const angle = (index / insights.length) * 2 * Math.PI;
-    const x =
-      Math.cos(angle) * radius + Math.sign(Math.cos(angle)) * minDistance;
-    const z =
-      Math.sin(angle) * radius + Math.sign(Math.sin(angle)) * minDistance;
+  const insightBirds = useMemo(() => {
+    return insights.map((insight, index) => {
+      console.log("Insight Bird YDist: ", birdYDistance);
+      const angle = (index / insights.length) * 2 * Math.PI;
+      const x =
+        Math.cos(angle) * radius + Math.sign(Math.cos(angle)) * minDistance;
+      const z =
+        Math.sin(angle) * radius + Math.sign(Math.sin(angle)) * minDistance;
 
-    return (
-      <mesh
-        position={[x, index * birdYDistance, z]}
-        rotation-y={Math.random() * Math.PI * 2}
-        key={index}
-        scale={birdScale}
-        onClick={(event) => {
-          event.stopPropagation();
-          handleBirdClicked(insight);
-        }}
-      >
-        <InsightBird insight={insight} />
-      </mesh>
-    );
-  });
+      return (
+        <mesh
+          position={[x, index * birdYDistance, z]}
+          rotation-y={Math.random() * Math.PI * 2}
+          key={index}
+          scale={birdScale}
+          onClick={(event) => {
+            event.stopPropagation();
+            handleBirdClicked(insight);
+          }}
+        >
+          <InsightBird insight={insight} />
+        </mesh>
+      );
+    });
+  }, []);
 
   const showInsightModal = (insight: InsightMessageProps | null) => {
     if (insight !== null) {
@@ -215,7 +218,7 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
 
         {modalVisible && showInsightModal(selectedInsight)}
 
-        <Perf position="top-left" />
+        {/* <Perf position="top-left" /> */}
 
         <EffectComposer>
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
