@@ -14,6 +14,10 @@ export default async function Scene() {
     redirect("/login");
   }
 
+  const user = await prisma.user_data.findUnique({
+    where: { id: data.user.id },
+  });
+
   const monthlyScoresResponse =
     await prisma.creditreport_monthly_scores_v1.findFirst({
       where: { id: data.user.id },
@@ -28,10 +32,14 @@ export default async function Scene() {
     creditScore = jsonObj?.scores?.[0]?.score;
   }
 
-  // console.log("Monthly Scores Data:", creditScore);
-
   const insights = await generateInsights(data.user.id);
-  // console.log("Generated Insights:", insights);
+  const profileImage = user?.profile_image || 0;
 
-  return <CreditTree creditScore={900} insights={insights} />;
+  return (
+    <CreditTree
+      creditScore={creditScore}
+      insights={insights}
+      profileImage={profileImage}
+    />
+  );
 }

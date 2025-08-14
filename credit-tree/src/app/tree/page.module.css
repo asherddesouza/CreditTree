@@ -5,19 +5,9 @@
   z-index: 10;
   display: flex;
   justify-content: flex-end;
-  width: 115px;
 }
 
-.profileButton {
-  padding: 15px 25px;
-  background-color: #ffffff;
-  border: 10px solid #618378;
-  border-radius: 10px;
-  text-decoration: none;
-}
-
-.profileButton:hover {
-  color: #ffffff;
-  border-color: #486159;
-  cursor: pointer;
+.profileIcon {
+  border-radius: 50%;
+  border: 7px solid black;
 }

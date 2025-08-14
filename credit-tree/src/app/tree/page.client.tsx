@@ -21,6 +21,7 @@ import { useState, useMemo, useCallback } from "react";
 interface TreeProps {
   creditScore: number;
   insights: any[];
+  profileImage: number;
 }
 
 interface CameraSettingsProps {
@@ -124,13 +125,45 @@ export function BirdMinDistance(creditScore: number): number {
   }
 }
 
-export default function CreditTree({ creditScore, insights }: TreeProps) {
+export function ProfileColour(profileImage: number): string {
+  switch (profileImage) {
+    case 0:
+      return "grey";
+    case 1:
+      return "red";
+    case 2:
+      return "green";
+    case 3:
+      return "blue";
+    case 4:
+      return "orange";
+    case 5:
+      return "yellow";
+    case 6:
+      return "turquoise";
+    case 7:
+      return "purple";
+    case 8:
+      return "pink";
+    case 9:
+      return "black";
+    default:
+      return "grey";
+  }
+}
+
+export default function CreditTree({
+  creditScore,
+  insights,
+  profileImage,
+}: TreeProps) {
   const treeStage = TreeStage(creditScore);
   const cameraSettings = CameraSettings(creditScore);
   const birdScale = BirdScale(creditScore);
   const birdYDistance = BirdYPositionRange(creditScore);
   const minDistance = BirdMinDistance(creditScore);
   const radius = minDistance;
+  const profileColour = ProfileColour(profileImage);
 
   const [selectedInsight, setSelectedInsight] =
     useState<InsightMessageProps | null>(null);
@@ -203,15 +236,13 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
             href="/profile"
             data-testid="profile-button"
           >
-            <button className={styles.profileButton}>
-              <img
-                className={styles.profileIcon}
-                src="/resources/profile.png"
-                width={35}
-                height={50}
-                alt="profile page"
-              />
-            </button>
+            <img
+              className={styles.profileIcon}
+              src={`/resources/profile-images/${profileColour}-profile-icon.png`}
+              width={80}
+              height={80}
+              alt="profile page"
+            />
           </Link>
         </Html>
 
