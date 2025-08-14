@@ -23,8 +23,16 @@ export default async function generateInsights(uuid: string) {
     PaymentHistoryV1Insights,
   ];
 
-  for (const fn of insightFunctions) {
-    const result = await fn(uuid);
+  const results = await Promise.all(
+    insightFunctions.map((fn) =>
+      fn(uuid).catch((error) => {
+        console.error(`Error generating insights from ${fn.name}:`, error);
+        return [];
+      })
+    )
+  );
+
+  for (const result of results) {
     if (Array.isArray(result) && result.length > 0) {
       generatedInsights.push(...result);
     }

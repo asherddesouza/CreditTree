@@ -215,7 +215,7 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
 
         {modalVisible && showInsightModal(selectedInsight)}
 
-        <Perf position="top-left" />
+        {/* <Perf position="top-left" /> */}
 
         <EffectComposer>
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
