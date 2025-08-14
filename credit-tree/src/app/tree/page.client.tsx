@@ -13,7 +13,6 @@ import TreeStage5 from "@/components/tree-stage-5/page";
 import InsightBird from "@/components/insight-bird/page";
 import Globe from "@/components/globe/page";
 import { Canvas } from "@react-three/fiber";
-import Image from "next/image";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
@@ -205,7 +204,7 @@ export default function CreditTree({ creditScore, insights }: TreeProps) {
             data-testid="profile-button"
           >
             <button className={styles.profileButton}>
-              <Image
+              <img
                 className={styles.profileIcon}
                 src="/resources/profile.png"
                 width={35}

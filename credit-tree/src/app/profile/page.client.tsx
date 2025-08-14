@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "./page.module.css";
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
@@ -87,7 +86,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
         <div className={`fontPacifico ${styles.divider}`}>Profile</div>
         <div className={styles.dividerLine} />
       </div>
-      <Image
+      <img
         className={styles.profile}
         src={profileImageSrc}
         width={250}
@@ -98,7 +97,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
       <div className={`fontPaytone ${styles.email}`}>{email}</div>
       <div className={`${styles.editContainer}`}>
         <div>
-          <Image
+          <img
             className={styles.editIcon}
             src="/resources/edit.png"
             width={30}
@@ -113,7 +112,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
           </Link>
         </div>
         <div>
-          <Image
+          <img
             className={styles.changePasswordIcon}
             src="/resources/key.png"
             width={45}
@@ -137,7 +136,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
           Logout
         </button>
         <div>
-          <Image
+          <img
             className={styles.deleteIcon}
             src="/resources/bin.png"
             width={32}

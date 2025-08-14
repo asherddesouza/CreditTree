@@ -20,7 +20,7 @@ test("renders the page correctly", () => {
   expect(heading.textContent).toBe("Edit Profile");
   expect(profileImage).toHaveAttribute(
     "src",
-    "/_next/image?url=%2Fresources%2Fprofile-images%2Fred-profile-icon.png&w=640&q=75"
+    "/resources/profile-images/red-profile-icon.png"
   );
   expect(email.textContent).toBe("Current email: test@ada.ac.uk");
   expect(saveButton.textContent).toBe("Save");

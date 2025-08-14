@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -13,14 +12,14 @@ export default function Home() {
         >
           GET STARTED
         </Link>
-        <Image
+        <img
           className={styles.sapling}
           src="/resources/sapling.png"
           width={97}
           height={150}
           alt="sapling"
         />
-        <Image
+        <img
           className={styles.ground}
           src="/resources/ground.png"
           width={3000}

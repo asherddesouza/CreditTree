@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./page.module.css";
 import { useActionState } from "react";
 import { createUser } from "@/app/register/actions";
@@ -15,7 +14,7 @@ export default function Page() {
     <form className={styles.container} action={formAction}>
       <div className={`fontPaytone ${styles.title}`}>Create Account</div>
       <div>
-        <Image
+        <img
           className={styles.profileIcon}
           src="/resources/profile.png"
           width={33}
@@ -31,7 +30,7 @@ export default function Page() {
       </div>
 
       <div>
-        <Image
+        <img
           className={styles.emailIcon}
           src="/resources/mail.png"
           width={45}
@@ -47,7 +46,7 @@ export default function Page() {
       </div>
 
       <div>
-        <Image
+        <img
           className={styles.padlockIcon}
           src="/resources/padlock.png"
           width={53}
@@ -63,7 +62,7 @@ export default function Page() {
       </div>
 
       <div>
-        <Image
+        <img
           className={styles.padlockIcon}
           src="/resources/padlock.png"
           width={53}
