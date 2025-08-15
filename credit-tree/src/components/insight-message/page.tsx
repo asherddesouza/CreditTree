@@ -85,7 +85,6 @@ export default function InsightMessage({
                     ) : null}
                   </div>
                 </div>
-
                 <div className={styles.type}>{infoCard.type}</div>
               </div>
             )}
@@ -93,7 +92,7 @@ export default function InsightMessage({
             <div className={styles.description}>{description}</div>
             <Link
               className={`fontPavanam ${styles.externalCta}`}
-              href="https://app.clearscore.com/"
+              href="https://app.clearscore.com/credit-health/credit-report/equifax/report-updates"
             >
               See more info on ClearScore
             </Link>

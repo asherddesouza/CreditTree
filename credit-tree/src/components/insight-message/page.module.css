@@ -76,6 +76,7 @@
   position: absolute;
   bottom: -7rem;
   right: -9rem;
+  visibility: visible;
 }
 
 .infoCard {
@@ -102,6 +103,14 @@
   gap: 5px;
 }
 
+.name {
+  font-size: 16px;
+}
+
+.type {
+  font-size: 16px;
+}
+
 .numberChangeCard {
   display: flex;
   align-items: center;
@@ -117,4 +126,45 @@
 
 .redArrow {
   color: #912424;
+}
+
+@media only screen and (max-width: 675px) {
+  .insightMessage {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .insightMessage {
+    width: 70%;
+  }
+  .insightBird {
+    transform: scaleX(-1) scale(0.4);
+    bottom: -6.5rem;
+    right: -11rem;
+  }
+  .infoCard {
+    padding: 10px;
+  }
+  .name {
+    font-size: 12px;
+  }
+  .type {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .insightBird {
+    visibility: hidden;
+  }
+  .infoCard {
+    padding: 10px;
+  }
+  .name {
+    font-size: 10px;
+  }
+  .type {
+    font-size: 10px;
+  }
 }
