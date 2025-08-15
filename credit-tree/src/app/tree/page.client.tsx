@@ -178,7 +178,7 @@ export default function CreditTree({
   }, []);
 
   const handleInfoIconClicked = () => {
-    setInfoModalVisible(true);
+    infoModalVisible ? setInfoModalVisible(false) : setInfoModalVisible(true);
   };
 
   const insightBirds = useMemo(() => {
