@@ -16,6 +16,7 @@ import { Canvas } from "@react-three/fiber";
 import Link from "next/link";
 import InsightMessage from "@/components/insight-message/page";
 import { InsightMessageProps } from "@/components/insight-message/page";
+import InfoMessage from "@/components/info-message/page";
 import { useState, useMemo, useCallback } from "react";
 
 interface TreeProps {
@@ -167,16 +168,21 @@ export default function CreditTree({
 
   const [selectedInsight, setSelectedInsight] =
     useState<InsightMessageProps | null>(null);
-  const [modalVisible, setModalVisible] = useState(false);
+
+  const [insightModalVisible, setInsightModalVisible] = useState(false);
+  const [infoModalVisible, setInfoModalVisible] = useState(false);
 
   const handleBirdClicked = useCallback((insight: InsightMessageProps) => {
     setSelectedInsight(insight);
-    setModalVisible(true);
+    setInsightModalVisible(true);
   }, []);
+
+  const handleInfoIconClicked = () => {
+    setInfoModalVisible(true);
+  };
 
   const insightBirds = useMemo(() => {
     return insights.map((insight, index) => {
-      console.log("Insight Bird YDist: ", birdYDistance);
       const angle = (index / insights.length) * 2 * Math.PI;
       const x =
         Math.cos(angle) * radius + Math.sign(Math.cos(angle)) * minDistance;
@@ -211,13 +217,24 @@ export default function CreditTree({
             infoCard={insight.infoCard}
             description={insight.description}
             birdColour={insight.birdColour}
-            setModalVisible={setModalVisible}
-            modalVisible={modalVisible}
+            setModalVisible={setInsightModalVisible}
+            modalVisible={insightModalVisible}
           />
         </Html>
       );
     }
     return null;
+  };
+
+  const showInfoModal = () => {
+    return (
+      <Html fullscreen>
+        <InfoMessage
+          setModalVisible={setInfoModalVisible}
+          modalVisible={infoModalVisible}
+        />
+      </Html>
+    );
   };
 
   return (
@@ -231,8 +248,21 @@ export default function CreditTree({
         }}
       >
         <Html fullscreen>
+          <div className={styles.helpIconPosition}>
+            <button
+              className={`${styles.helpIcon}`}
+              onClick={handleInfoIconClicked}
+            >
+              <img
+                src="/resources/help.png"
+                alt="Help"
+                height={100}
+                width={100}
+              />
+            </button>
+          </div>
           <Link
-            className={styles.topRightOverlay}
+            className={styles.profileIconPosition}
             href="/profile"
             data-testid="profile-button"
           >
@@ -246,37 +276,32 @@ export default function CreditTree({
           </Link>
         </Html>
 
-        {modalVisible && showInsightModal(selectedInsight)}
+        {insightModalVisible && showInsightModal(selectedInsight)}
+        {infoModalVisible && showInfoModal()}
 
         {/* <Perf position="top-left" /> */}
 
         <EffectComposer>
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
         </EffectComposer>
-
         <Environment
           files="./textures/autumn_field_puresky_4k.hdr"
           background
         />
-
         <OrbitControls
           makeDefault
           enablePan={false}
           maxPolarAngle={1.6}
           maxDistance={270}
         />
-
         <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
         <ambientLight intensity={4} />
-
         {insightBirds}
-
         {treeStage === 1 ? <TreeStage1 /> : null}
         {treeStage === 2 ? <TreeStage2 /> : null}
         {treeStage === 3 ? <TreeStage3 /> : null}
         {treeStage === 4 ? <TreeStage4 /> : null}
         {treeStage === 5 ? <TreeStage5 /> : null}
-
         <Globe />
       </Canvas>
     </>

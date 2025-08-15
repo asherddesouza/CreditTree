@@ -1,4 +1,4 @@
-.topRightOverlay {
+.profileIconPosition {
   position: absolute;
   top: 24px;
   right: 24px;
@@ -10,4 +10,19 @@
 .profileIcon {
   border-radius: 50%;
   border: 7px solid black;
+}
+
+.helpIconPosition {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.helpIcon {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
