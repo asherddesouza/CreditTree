@@ -93,7 +93,7 @@ describe("FraudWarningsV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "pink",
         date: "Feb 2023",
         description:
           "You have 1 fraud warning on your credit report. These are indicators that you might be at risk of identity theft or fraud, prompting lenders to take extra steps to verify your identity before granting credit.",
@@ -113,7 +113,7 @@ describe("FraudWarningsV1Insights Tests", () => {
 
     expect(insights).toEqual([
       {
-        birdColour: "blue",
+        birdColour: "pink",
         date: "Feb 2023",
         description:
           "You have 2 fraud warnings on your credit report. These are indicators that you might be at risk of identity theft or fraud, prompting lenders to take extra steps to verify your identity before granting credit.",

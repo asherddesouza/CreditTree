@@ -1,23 +1,34 @@
-.topRightOverlay {
+.profileIconPosition {
   position: absolute;
   top: 24px;
   right: 24px;
   z-index: 10;
   display: flex;
   justify-content: flex-end;
-  width: 115px;
 }
 
-.profileButton {
-  padding: 15px 25px;
-  background-color: #ffffff;
-  border: 10px solid #618378;
-  border-radius: 10px;
-  text-decoration: none;
+.profileIcon {
+  border-radius: 50%;
+  border: 7px solid black;
 }
 
-.profileButton:hover {
-  color: #ffffff;
-  border-color: #486159;
+.helpIconPosition {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.helpIcon {
   cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.canvasContainer {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
