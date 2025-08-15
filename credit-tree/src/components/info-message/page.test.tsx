@@ -8,9 +8,13 @@ describe("InfoMessage Component", async () => {
     render(<InfoMessage setModalVisible={() => {}} modalVisible={true} />);
 
     expect(screen.getByText("CreditTree")).toBeInTheDocument();
+    expect(screen.getByText("↳ Welcome to CreditTree!")).toBeInTheDocument();
+    expect(
+      screen.getByText("↳ As your credit score grows, your tree will grow too!")
+    ).toBeInTheDocument();
     expect(
       screen.getByText(
-        "Talk to the birds to gain Insights on how you can improve your Credit Health!"
+        "↳ Talk to the birds to gain Insights on how you can improve your Credit Health!"
       )
     ).toBeInTheDocument();
 
