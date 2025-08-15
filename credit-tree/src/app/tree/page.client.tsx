@@ -238,7 +238,7 @@ export default function CreditTree({
   };
 
   return (
-    <>
+    <div className={styles.canvasContainer}>
       <Canvas
         camera={{
           fov: cameraSettings.fov,
@@ -304,6 +304,6 @@ export default function CreditTree({
         {treeStage === 5 ? <TreeStage5 /> : null}
         <Globe />
       </Canvas>
-    </>
+    </div>
   );
 }
