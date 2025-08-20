@@ -209,18 +209,16 @@ export default function CreditTree({
   const showInsightModal = (insight: InsightMessageProps | null) => {
     if (insight !== null) {
       return (
-        <Html fullscreen>
-          <InsightMessage
-            title={insight.title}
-            date={insight.date}
-            numberChange={insight.numberChange}
-            infoCard={insight.infoCard}
-            description={insight.description}
-            birdColour={insight.birdColour}
-            setModalVisible={setInsightModalVisible}
-            modalVisible={insightModalVisible}
-          />
-        </Html>
+        <InsightMessage
+          title={insight.title}
+          date={insight.date}
+          numberChange={insight.numberChange}
+          infoCard={insight.infoCard}
+          description={insight.description}
+          birdColour={insight.birdColour}
+          setModalVisible={setInsightModalVisible}
+          modalVisible={insightModalVisible}
+        />
       );
     }
     return null;
@@ -228,12 +226,10 @@ export default function CreditTree({
 
   const showInfoModal = () => {
     return (
-      <Html fullscreen>
-        <InfoMessage
-          setModalVisible={setInfoModalVisible}
-          modalVisible={infoModalVisible}
-        />
-      </Html>
+      <InfoMessage
+        setModalVisible={setInfoModalVisible}
+        modalVisible={infoModalVisible}
+      />
     );
   };
 
@@ -248,6 +244,9 @@ export default function CreditTree({
         }}
       >
         <Html fullscreen>
+          {insightModalVisible && showInsightModal(selectedInsight)}
+          {infoModalVisible && showInfoModal()}
+
           <div className={styles.helpIconPosition}>
             <button
               className={`${styles.helpIcon}`}
@@ -275,9 +274,6 @@ export default function CreditTree({
             />
           </Link>
         </Html>
-
-        {insightModalVisible && showInsightModal(selectedInsight)}
-        {infoModalVisible && showInfoModal()}
 
         {/* <Perf position="top-left" /> */}
 
