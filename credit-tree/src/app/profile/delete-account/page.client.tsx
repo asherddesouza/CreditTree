@@ -77,7 +77,7 @@ export default function Page() {
             disabled={pending}
             aria-label="Delete Account Button"
           >
-            Delete Account
+            {pending ? <span className={styles.spinner} /> : "Delete Account"}
           </button>
         </div>
       </form>
