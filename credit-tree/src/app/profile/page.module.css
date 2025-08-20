@@ -126,6 +126,9 @@
   padding: 0px 0px;
   background-color: #d9d9d9;
   width: 65px;
+  text-decoration: none;
+  color: #36403d;
+  text-align: center;
 }
 
 .backButton:hover {
