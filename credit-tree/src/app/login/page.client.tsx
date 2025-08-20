@@ -55,7 +55,7 @@ export default function Login() {
         type="submit"
         disabled={pending}
       >
-        LOGIN
+        {pending ? <span className={styles.spinner} /> : "LOGIN"}
       </button>
 
       <Link href="/register" className={`fontPavanam ${styles.register}`}>

@@ -86,7 +86,7 @@ export default function Page() {
         type="submit"
         disabled={pending}
       >
-        SIGN UP
+        {pending ? <span className={styles.spinner} /> : "SIGN UP"}
       </button>
 
       <Link href="/login" className={`fontPavanam ${styles.login}`}>

@@ -85,7 +85,7 @@ export default function Page() {
           disabled={pending}
           data-testid="submit-button"
         >
-          Submit
+          {pending ? <span className={styles.spinner} /> : "Submit"}
         </button>
       </form>
     </div>

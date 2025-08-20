@@ -146,7 +146,7 @@ export default function Page({ email, profile_image, uuid }: ProfileProps) {
             disabled={pending}
             type="submit"
           >
-            Save
+            {pending ? <span className={styles.spinner} /> : "Save"}
           </button>
         </div>
       </form>
