@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function GetStarted() {
   return (
-    <div className={styles.backgroundContainer}>
+    <div className={styles.background}>
       <div className={styles.container}>
         <div className={`fontPacifico ${styles.title}`}>Welcome!</div>
         <div className={`fontPavanam ${styles.subtitle}`}>

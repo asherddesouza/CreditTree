@@ -77,8 +77,14 @@ export default function Page() {
         />
       </div>
 
-      {state?.message && (
+      {state?.message ? (
         <div className={`fontPavanam ${styles.error}`}>{state.message}</div>
+      ) : (
+        <div className={`fontPavanam ${styles.info}`}>
+          💡 Your password must be at least 8 characters long and must contain
+          at least one uppercase letter, one lowercase letter, one number, and
+          one symbol.
+        </div>
       )}
 
       <button
