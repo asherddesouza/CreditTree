@@ -68,12 +68,24 @@
   margin: 10px 30px;
 }
 
+.info {
+  background-color: #5597b8;
+  padding: 15px 45px;
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: center;
+  border: 5px solid #495853;
+  border-radius: 25px;
+  margin: 10px 30px;
+}
+
 .login {
   color: #ffffff;
   font-size: 1.5rem;
   text-decoration: none;
   margin: 20px;
   text-align: center;
+  padding-bottom: 30px;
 }
 
 .spinner {
