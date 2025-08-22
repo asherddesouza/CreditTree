@@ -6,6 +6,7 @@
   align-items: center;
   bottom: 40%;
   user-select: none;
+  z-index: 100;
 }
 
 .insightMessage {
