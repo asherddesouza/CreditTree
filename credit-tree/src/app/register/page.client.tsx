@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { createUser } from "@/app/register/actions";
 import Link from "next/link";
 
@@ -9,6 +9,8 @@ export default function Page() {
   const [state, formAction, pending] = useActionState(createUser, {
     message: "",
   });
+
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <form className={styles.container} action={formAction}>
@@ -54,7 +56,7 @@ export default function Page() {
           alt="password"
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           name="password"
           className={`fontPavanam ${styles.field}`}
@@ -70,12 +72,31 @@ export default function Page() {
           alt="password"
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Confirm Password"
           name="confirmPassword"
           className={`fontPavanam ${styles.field}`}
         />
       </div>
+
+      <button
+        onClick={() => setShowPassword(!showPassword)}
+        className={`${styles.togglePasswordButton} fontPavanam`}
+        type="button"
+      >
+        <img
+          className={styles.eyeIcon}
+          src={
+            showPassword
+              ? "/resources/eye_active.png"
+              : "/resources/eye_inactive.png"
+          }
+          alt="toggle password visibility"
+          width={64}
+          height={64}
+        />
+        <div>{showPassword ? "Hide Password" : "Show Password"}</div>
+      </button>
 
       {state?.message ? (
         <div className={`fontPavanam ${styles.error}`}>{state.message}</div>
