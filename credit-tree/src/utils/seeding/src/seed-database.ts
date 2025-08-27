@@ -53,7 +53,7 @@ export const scenarios = {
   rankedInsightsByMonth: RankedInsightsByMonthData,
 } satisfies Record<SeedScenarios, any>;
 
-export function createSeeder(scenario: SeedScenarios, uuid: string) {
+export function generateSeededData(scenario: SeedScenarios, uuid: string) {
   const seeder = scenarios[scenario];
 
   if (!seeder) {
@@ -88,9 +88,9 @@ export default async function SeedDatabase(
       throw new Error(`Scenario "${scenario}" is not defined in scenarioMap.`);
     }
 
-    const seeder = await createSeeder(scenario, uuid);
+    const seededData = await generateSeededData(scenario, uuid);
 
-    await scenarioMap[scenario](uuid, seeder)
+    await scenarioMap[scenario](uuid, seededData)
       .then((result) => {
         console.log(`Seeding completed for scenario: ${scenario}`);
         return result;
