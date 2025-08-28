@@ -14,14 +14,7 @@ interface RankedInsightsByMonthInsight {
     number?: string;
     type: string;
   };
-  birdColour?:
-    | "green"
-    | "red"
-    | "blue"
-    | "yellow"
-    | "purple"
-    | "pink"
-    | "black";
+  birdColour?: "yellow" | "purple";
 }
 
 interface RankedInsightsByMonthJson {
