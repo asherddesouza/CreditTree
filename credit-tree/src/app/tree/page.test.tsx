@@ -5,6 +5,7 @@ import {
   BirdYPositionRange,
   BirdMinDistance,
 } from "./page.client";
+import { expect } from "vitest";
 
 describe("TreeStage works correctly", () => {
   it("returns correct stage for credit score 97", () => {

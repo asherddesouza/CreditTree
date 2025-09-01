@@ -130,7 +130,7 @@ export default function Page({ name, email, profile_image }: ProfileProps) {
         >
           Logout
         </button>
-        <div>
+        <div className={styles.deleteAccountContainer}>
           <img
             className={styles.deleteIcon}
             src="/resources/bin.png"

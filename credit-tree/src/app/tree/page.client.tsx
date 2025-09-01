@@ -292,6 +292,14 @@ export default function CreditTree({
         />
         <directionalLight castShadow position={[1, 2, 3]} intensity={4.5} />
         <ambientLight intensity={4} />
+        {/* <InsightBird
+          insight={{
+            title: "Credit Limit Increased",
+            date: "August 2025",
+            description: "This positive change may improve your credit score.",
+            birdColour: "green",
+          }}
+        /> */}
         {insightBirds}
         {treeStage === 1 ? <TreeStage1 /> : null}
         {treeStage === 2 ? <TreeStage2 /> : null}

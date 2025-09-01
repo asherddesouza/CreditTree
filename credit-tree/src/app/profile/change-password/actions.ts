@@ -22,10 +22,6 @@ export async function changePassword(prevData: any, formData: FormData) {
     ? (confirmNewPasswordEntry as string).trim()
     : "";
 
-  // console.log("oldPasswordEntry", oldPasswordEntry);
-  // console.log("newPasswordEntry", newPasswordEntry);
-  // console.log("confirmNewPasswordEntry", confirmNewPasswordEntry);
-
   const pattern = new RegExp(
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
   );
