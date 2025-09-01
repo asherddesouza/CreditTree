@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { expect } from "vitest";
 import InsightMessage from "./page";
 import styles from "./page.module.css";
 

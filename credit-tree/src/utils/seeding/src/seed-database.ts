@@ -1,10 +1,10 @@
-import { generateJsonData as PaymentHistoryJsonData } from "./creditreport-payment-history-overview-seeder-v1";
+import { generateJsonData as PaymentHistoryData } from "./creditreport-payment-history-overview-seeder-v1";
 import PaymentHistoryOverviewV1Seeder from "./creditreport-payment-history-overview-seeder-v1";
 
-import { generateJsonData as NoticesJsonData } from "./creditreport-notices-v1-seeder";
+import { generateJsonData as NoticesData } from "./creditreport-notices-v1-seeder";
 import NoticesV1Seeder from "./creditreport-notices-v1-seeder";
 
-import { generateJsonData as AddressesJsonData } from "./creditreport-addresses-v1-seeder";
+import { generateJsonData as AddressesData } from "./creditreport-addresses-v1-seeder";
 import AddressesV1Seeder from "./creditreport-addresses-v1-seeder";
 
 import { generateJsonData as CourtOrdersData } from "./creditreport-court-orders-v1-seeder";
@@ -41,9 +41,9 @@ export type SeedScenarios =
   | "electoralRoll";
 
 export const scenarios = {
-  paymentHistory: PaymentHistoryJsonData,
-  notices: NoticesJsonData,
-  addresses: AddressesJsonData,
+  paymentHistory: PaymentHistoryData,
+  notices: NoticesData,
+  addresses: AddressesData,
   courtOrders: CourtOrdersData,
   electoralRoll: ElectoralRollData,
   financialAccounts: FinancialAccountsData,
@@ -53,7 +53,7 @@ export const scenarios = {
   rankedInsightsByMonth: RankedInsightsByMonthData,
 } satisfies Record<SeedScenarios, any>;
 
-export function createSeeder(scenario: SeedScenarios, uuid: string) {
+export function generateSeededData(scenario: SeedScenarios, uuid: string) {
   const seeder = scenarios[scenario];
 
   if (!seeder) {
@@ -88,9 +88,9 @@ export default async function SeedDatabase(
       throw new Error(`Scenario "${scenario}" is not defined in scenarioMap.`);
     }
 
-    const seeder = await createSeeder(scenario, uuid);
+    const seededData = await generateSeededData(scenario, uuid);
 
-    await scenarioMap[scenario](uuid, seeder)
+    await scenarioMap[scenario](uuid, seededData)
       .then((result) => {
         console.log(`Seeding completed for scenario: ${scenario}`);
         return result;

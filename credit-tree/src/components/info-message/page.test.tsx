@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import InfoMessage from "./page";
 import styles from "./page.module.css";
+import { expect } from "vitest";
 
 describe("InfoMessage Component", async () => {
   it("renders the component when fully populated", async () => {

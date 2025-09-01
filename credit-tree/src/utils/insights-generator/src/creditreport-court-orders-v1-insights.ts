@@ -8,14 +8,7 @@ interface CourtOrdersInsight {
   title: string;
   date: string;
   description: string;
-  birdColour?:
-    | "green"
-    | "red"
-    | "blue"
-    | "yellow"
-    | "purple"
-    | "pink"
-    | "black";
+  birdColour?: "purple";
 }
 
 interface CourtOrdersJson {

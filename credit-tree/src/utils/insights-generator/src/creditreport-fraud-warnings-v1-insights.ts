@@ -8,14 +8,7 @@ interface FraudWarningsInsight {
   title: string;
   date: string;
   description: string;
-  birdColour?:
-    | "green"
-    | "red"
-    | "blue"
-    | "yellow"
-    | "purple"
-    | "pink"
-    | "black";
+  birdColour?: "pink";
 }
 
 interface FraudWarningsJson {

@@ -109,6 +109,10 @@
   cursor: pointer;
 }
 
+.deleteAccountContainer {
+  padding-bottom: 50px;
+}
+
 .accountControlsContainer {
   display: flex;
   align-items: center;

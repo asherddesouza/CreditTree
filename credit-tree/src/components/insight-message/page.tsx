@@ -93,6 +93,7 @@ export default function InsightMessage({
             <Link
               className={`fontPavanam ${styles.externalCta}`}
               href="https://app.clearscore.com/credit-health/credit-report/equifax/report-updates"
+              target="_blank"
             >
               See more info on ClearScore
             </Link>

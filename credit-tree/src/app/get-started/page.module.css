@@ -90,3 +90,32 @@
     margin: -15px;
   }
 }
+
+@media only screen and (max-height: 810px) {
+  .sapling {
+    bottom: 30px;
+    transform: scale(0.8);
+  }
+  .ground {
+    bottom: -250px;
+  }
+}
+
+@media only screen and (max-height: 725px) {
+  .sapling {
+    bottom: 1ch;
+    transform: scale(0.5);
+  }
+  .ground {
+    bottom: -250px;
+  }
+}
+
+@media only screen and (max-height: 680px) {
+  .sapling {
+    visibility: hidden;
+  }
+  .ground {
+    bottom: -250px;
+  }
+}

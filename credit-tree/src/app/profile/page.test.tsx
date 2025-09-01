@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Page from "./page.client";
 import "@testing-library/jest-dom";
+import { expect } from "vitest";
 
 describe("Profile", () => {
   it("renders the page with the correct text", () => {
